@@ -141,37 +141,47 @@ res = evaluar('BORRAR',  'TAREA', entidad_id=12)
   - `Tramite`: planificado / en_curso / finalizado
   - `Tarea`: planificada / en_curso / ejecutada / ejecutada_con_doc
 
-## Subsistema documental — decisiones arquitectónicas (2026-03-04)
+## Subsistema documental — decisiones arquitectónicas
 Ver `docs/fuentesIA/ARQUITECTURA_DOCUMENTOS.md` para el detalle completo.
 
-- **Pool agnóstico confirmado:** `Documento` solo tiene FK expediente_id. No tocar.
+- **Pool agnóstico confirmado:** `Documento` solo tiene FK expediente_id y tipo_doc_id. No tocar.
 - **BDDAT NO genera URLs** — siempre las proporciona el usuario. El modelo solo guarda la URL.
 - **Particularización N:M** (NO herencia SQLAlchemy) — patrón único para extender documentos.
   Precedente: `DocumentoProyecto`. Próximo: `DocumentoOrganismo` (cuando llegue SEPARATAS).
-- **GAP bloqueante M1:** ✅ RESUELTO (#188) — `tipos_documentos` + `tipo_doc_id` en Documento.
+- **tipos_documentos + tipo_doc_id:** ✅ implementado (#188). OTROS (id=1) = cajón de sastre.
 - **Estado de consultas:** derivado en `app/services/seguimiento.py`, no persistido ni Event Sourcing.
-- **Plazos:** servicio separado `app/services/plazos.py` (M3). Motor delega via tipo_criterio
-  `PLAZO_ESTADO` con handler vacío (mismo patrón Fase 2). Issue M3 creado.
-- **Generación de escritos (M2):** dos capas:
-  - Capa 1: `ContextoBaseExpediente` (campos simples, Supervisor autónomo)
-  - Capa 2: Context Builders por tipo (campos calculados, con soporte técnico/AI)
-  - Tabla `tipos_escritos` con `contexto_clase` NULL para capa 1, nombre clase para capa 2
-  - Guía: `docs/fuentesIA/GUIA_CONTEXT_BUILDERS.md`
+- **Plazos:** servicio separado `app/services/plazos.py` (M3).
+- **Generación de escritos (M2):** dos capas (ver `docs/fuentesIA/GUIA_CONTEXT_BUILDERS.md`).
 
-### Flujos de entrada de documentos al pool
-- **Flujo A — Tarea → Documento** (directo): usuario pulsa acción en tarea → proporciona URL
-  (manual, o capturada por wizard/automatización). Tarea sabe su contexto.
-- **Flujo B — Pool → Tarea** (indirecto): documento sube al pool primero (puede ser por lotes
-  via descubridor). Luego se asocia a tarea por selección directa o filtro de ruta FS.
-- **La UI de tareas NO tiene lógica de pool** — solo ofrece filtros contextuales (SFTT).
-  La lógica de asociación automática vive en wizards/descubridores, no en la vista.
-- **Tarea.documento_usado_id / documento_producido_id** — dos selectores independientes al pool.
-  Cada uno puede apuntar a cualquier documento del pool del expediente.
+### Modelo Documento — estado actual (tras #191, 2026-03-05)
+- Campos **eliminados:** `origen`, `nombre_display`
+- `fecha_administrativa` → **nullable**. NULL = pendiente de revisión O sin valor jurídico propio
+  (borradores/informes internos). La API de tareas rechaza documentos con NULL si el tipo lo requiere.
+- `prioridad`: 0=normal, >0=prioritario. Pseudo-bool, validación solo en frontend.
+- Nombre a mostrar: siempre calculado desde la URL (último segmento sin extensión).
+- Procedencia del emisor: en columnas de las tablas cualificadoras, no en Documento.
 
-### Orden de implementación acordado
-1. Pool del expediente (UI independiente, valida los dos selectores)
-2. Selectores documento_usado / documento_producido en tareas (V3)
+### Dos vías de entrada al pool (decisión 2026-03-05)
+- **Vía 1 — Carga masiva** (#180): administrativo carga documentos al pool antes/durante tramitación.
+  No genera tareas ESFTT. Es una operación de soporte, no un acto de tramitación.
+- **Vía 2 — Tarea INCORPORAR**: solo documentos externos que llegan durante tramitación activa
+  (organismos, alegantes, titular, BOE/BOP). El documento debe existir ya en el pool.
+  **NO aplica a recepción inicial de solicitudes.**
+
+### RECEPCION_SOLICITUD (cambio ESFTT v5.3)
+Patrón G eliminado. RECEPCION_SOLICITUD usa ANALISIS (patrón A):
+el técnico verifica el pool, cualifica documentos con tipo_doc_id y produce acta de recepción
+como presupuesto para ADMISIBILIDAD y ANALISIS_TECNICO.
+
+### ZIP — no válido como unidad de trabajo
+Solo referencia histórica del paquete original de registro. Los documentos deben incorporarse
+individualmente con tipo_doc_id para que el motor de reglas pueda trabajar con ellos.
+
+### Orden de implementación
+1. ✅ Pool del expediente — UI gestión masiva (#180, plan listo)
+2. Selectores documento_usado / documento_producido en tareas (V3, #166)
 3. Wizards y descubridores (flujos automatizados)
+4. Requisitos documentales legales (#192, M5)
 
 ## Issues abiertos pendientes
 - **#120** — Establecer base numero_at antes de producción (tarea pre-despliegue)
