@@ -145,7 +145,7 @@ res = evaluar('BORRAR',  'TAREA', entidad_id=12)
 Ver `docs/fuentesIA/ARQUITECTURA_DOCUMENTOS.md` para el detalle completo.
 
 - **Pool agnóstico confirmado:** `Documento` solo tiene FK expediente_id y tipo_doc_id. No tocar.
-- **BDDAT NO genera URLs** — siempre las proporciona el usuario. El modelo solo guarda la URL.
+- **BDDAT SÍ genera URLs para ficheros subidos** — `pool_subir` guarda en `UPLOAD_FOLDER/expedientes/<id>/<uuid>/<nombre>` y almacena la ruta relativa en `Documento.url`. Para URLs externas (BOE, Notifica…) el usuario proporciona la URL via modal separado.
 - **Particularización N:M** (NO herencia SQLAlchemy) — patrón único para extender documentos.
   Precedente: `DocumentoProyecto`. Próximo: `DocumentoOrganismo` (cuando llegue SEPARATAS).
 - **tipos_documentos + tipo_doc_id:** ✅ implementado (#188). OTROS (id=1) = cajón de sastre.
@@ -178,7 +178,7 @@ Solo referencia histórica del paquete original de registro. Los documentos debe
 individualmente con tipo_doc_id para que el motor de reglas pueda trabajar con ellos.
 
 ### Orden de implementación
-1. ✅ Pool del expediente — UI gestión masiva (#180, plan listo)
+1. ✅ Pool del expediente — UI gestión masiva (#180, implementado: subida real de ficheros)
 2. Selectores documento_usado / documento_producido en tareas (V3, #166)
 3. Wizards y descubridores (flujos automatizados)
 4. Requisitos documentales legales (#192, M5)
