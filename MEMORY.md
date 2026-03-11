@@ -12,6 +12,10 @@ Credenciales Playwright: usuario `CLG`, contraseña `31416`
 ## Rama de trabajo
 Siempre trabajar en `develop`. PRs siempre contra `develop`, no contra `main`.
 
+## Ficheros temporales (commits, PRs)
+NUNCA usar `/tmp/` — en Windows, `Write` y `bash` resuelven a rutas distintas.
+Usar siempre `D:\BDDAT\docs_prueba\temp\` (gitignored). Borrar tras uso.
+
 ## MCPs configurados en Claude Code (~/.claude.json scope user)
 - `postgres` — npx @modelcontextprotocol/server-postgres → bddat (usuario bddat_admin, propietario de las tablas)
   - `claude_desktop` es un usuario separado creado para Claude Desktop, sin relación con Claude Code
