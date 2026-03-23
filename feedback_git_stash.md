@@ -1,11 +1,11 @@
 ---
 name: feedback_git_stash
-description: Usar git stash en lugar de git checkout -- cuando hay cambios no relacionados en ficheros del usuario
+description: No usar git checkout -- para descartar ficheros con cambios del usuario no relacionados con el commit
 type: feedback
 ---
 
-Nunca usar `git checkout -- <fichero>` para descartar cambios no relacionados antes de un commit. El usuario puede tener modificaciones en curso en ese fichero.
+`git checkout -- <fichero>` descarta cambios del usuario sin posibilidad de recuperación. El procedimiento general de stash está en `docs/fuentesIA/REGLAS_DESARROLLO.md` §12.
 
-**Why:** Al preparar el commit de #217, CLAUDE.md tenía cambios del usuario no relacionados. Los descarté con `git checkout -- CLAUDE.md` en lugar de hacer stash, perdiendo el trabajo del usuario.
+**Why:** Al preparar el commit de #217, CLAUDE.md tenía cambios del usuario no relacionados. Se descartaron con `git checkout -- CLAUDE.md`, perdiendo trabajo en curso.
 
-**How to apply:** Cuando hay ficheros modificados que no forman parte del commit, hacer `git stash` antes de commitear y `git stash pop` después. O preguntar al usuario qué hacer con esos cambios.
+**How to apply:** Si un fichero tiene cambios no relacionados con el commit, preguntar al usuario qué hacer — nunca descartar unilateralmente con `git checkout --`.

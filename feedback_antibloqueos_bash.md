@@ -1,16 +1,11 @@
 ---
 name: feedback_antibloqueos_bash
-description: Aplicar activamente los patrones anti-bloqueo de CLAUDE.md antes de escribir cada comando Bash, no solo tenerlos documentados
+description: Claude tiende a olvidar verificar los patrones anti-bloqueo Bash antes de escribir comandos, causando interrupciones innecesarias al usuario
 type: feedback
 ---
 
-Aunque los anti-bloqueos Bash están documentados en `docs/fuentesIA/ANTI_BLOQUEOS_BASH.md` y referenciados en `CLAUDE.md`, en sesiones anteriores he generado comandos que los violaban, causando interrupciones con peticiones de permiso evitables.
+Las reglas concretas están en `docs/fuentesIA/ANTI_BLOQUEOS_BASH.md`. El problema no es desconocerlas sino no verificarlas activamente antes de cada comando Bash.
 
-**Why:** Los patrones están documentados pero no se comprueban activamente antes de generar cada comando. El usuario ha tenido que aprobar manualmente comandos con `$()`, newlines, `sed`, o comillas en flags, que deberían haberse evitado desde el inicio.
+**Why:** En sesiones anteriores se han generado comandos con `$()`, newlines, `sed -i` o comillas en flags que dispararon peticiones de aprobación evitables, interrumpiendo el flujo de trabajo en sesiones "edits allowed".
 
-**How to apply:** Antes de escribir cualquier comando Bash, revisar mentalmente contra la lista:
-- ¿Usa `$()`o backticks? → separar en llamadas secuenciales
-- ¿Contiene saltos de línea o `#`? → `Write` a `docs_prueba/temp/` + `-F`/`--body-file`
-- ¿Usa `sed -i`? → usar tool `Edit`
-- ¿Tiene comillas dentro de nombres de flags? → fichero temporal
-- ¿Usa `cd` + git? → `git -C /ruta`
+**How to apply:** Antes de escribir cualquier comando Bash, hacer una pasada mental contra `ANTI_BLOQUEOS_BASH.md`. No es suficiente con tenerlo documentado — hay que aplicarlo en el momento de escribir el comando.

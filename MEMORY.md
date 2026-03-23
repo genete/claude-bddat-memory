@@ -4,13 +4,8 @@
 > El historial de issues cerrados está en `git log` — no duplicar aquí.
 
 ## Feedback de trabajo
-- [feedback_git_stash.md](feedback_git_stash.md) — Usar git stash, nunca `git checkout --`, ante cambios no relacionados del usuario
-- [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Comprobar activamente los patrones anti-bloqueo ANTES de escribir cada comando Bash, no solo tenerlos documentados
-
-## Decisiones de arquitectura
-- [motor_reglas.md](motor_reglas.md) — API y checks hardcoded del motor de reglas ESFTT
-- [subsistema_documental.md](subsistema_documental.md) — Pool, tipos, vías de entrada, decisiones de modelo
-- [consultas_organismos_diseño.md](consultas_organismos_diseño.md) — Fase consultas organismos y análisis técnico: tablas, trámites, motor de reglas
+- [feedback_git_stash.md](feedback_git_stash.md) — No usar `git checkout --` para descartar cambios no relacionados del usuario
+- [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Claude tiende a olvidar verificar los anti-bloqueos Bash antes de escribir comandos, causando interrupciones evitables
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
