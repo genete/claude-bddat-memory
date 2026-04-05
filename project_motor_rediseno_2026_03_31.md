@@ -155,3 +155,45 @@ Los builders beben de campos extra de proyecto que aún no existen.
 - Principio de escape: toda cascada y regla tiene vía de escape (ya en diseño)
 - Variables del motor deben tener integridad referencial o contrato explícito
 - No cubrir todas las reglas legales de golpe — añadir una, probar, iterar
+
+---
+
+## Principios añadidos en sesión 2026-04-05 (análisis LISTA)
+
+### El motor es radicalmente agnóstico — el Supervisor orquesta
+
+El motor lee contexto (dict de variables), evalúa reglas definidas en tabla (texto y números)
+y devuelve permitido/prohibido. **No sabe nada del dominio**: ni quién acredita qué, ni si
+una variable la aporta el promotor o la calcula BDDAT. Eso es razonamiento del Supervisor.
+
+El Supervisor (nosotros) es quien:
+1. Descubre variables y sus combinaciones analizando la normativa.
+2. Define las condiciones correctas (una o varias, encadenadas o no) que alimentan las reglas.
+3. Garantiza que las reglas no crean estados imposibles de desbloquear.
+
+Las reglas empiezan simples y crecen en complejidad a medida que aparecen nuevos casos.
+
+### El sistema de reglas es caótico — el motor no
+
+Las reglas que el motor lee son un sistema multivariable fácilmente caótico. Fuentes de caos:
+- Cambios legislativos → el Supervisor debe actualizar reglas.
+- Razonamientos incorrectos previos → reglas que hay que corregir.
+- Combinaciones de variables no contempladas → reglas que no cubren el caso.
+- Reglas que crean deadlocks (imposibles de desbloquear por combinación entre ellas).
+
+**Consecuencia:** toda regla nueva debe razonarse con cuidado antes de entrar en la tabla.
+El Supervisor es la última barrera antes del caos.
+
+### Cuando dos condiciones eximen el mismo hito: evaluar secuencialmente, no como OR
+
+Si hay condición A (exención legal objetiva) y condición B (requisito procedimental cumplido)
+que ambas eximen el mismo hito, no son intercambiables. El orden de evaluación importa y
+debe estar documentado. El motor las evaluará según cómo estén definidas las reglas —
+si se definen como OR, el usuario puede abusar rellenando la condición incorrecta.
+
+### Condiciones que solo el promotor puede acreditar → el motor bloquea, no decide
+
+Cuando la administración no puede evaluar objetivamente una condición (ej: si una
+modificación excede el polígono autorizado), el motor debe bloquear hasta que el promotor
+aporte la documentación. Nunca asumir en un sentido u otro. Esto se traduce en que
+la variable correspondiente se deja vacía/null y el motor la evalúa como bloqueante.
