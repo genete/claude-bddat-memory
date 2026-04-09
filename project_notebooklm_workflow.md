@@ -73,15 +73,61 @@ No se editan a mano. Son el output de NotebookLM procesado por Claude.
 Se actualizan en lote (4-5 normas de una vez) para minimizar lecturas de ficheros grandes.
 
 ### Prompt intermedio (normas posteriores a la primera)
-Añadir al prompt estándar:
-> "En las fuentes tienes los hallazgos consolidados de las normas ya analizadas.
-> Tenlos en cuenta para evitar duplicar reglas ya documentadas e identificar
-> contradicciones o complementos."
+Sustituir el prompt estándar por esta versión ampliada:
+
+```
+Analiza el documento {ID} ({nombre}) desde la perspectiva de un sistema de
+tramitación de expedientes de autorización de instalaciones de alta tensión en Andalucía.
+
+Extrae lo relevante para los procedimientos: AAP, AAC, AE, Transmisión y Cierre.
+
+Para cada regla, documenta en formato tabla:
+**{ID}-NN**; Descripción; Tipo_solicitud; Fase_afectada; Condición_activación; Excepción_de; Fuente_legal; Notas
+
+(Decir "formato tabla" pero dar las cabeceras separadas por ; — así NotebookLM genera tabla correctamente sin confundir | con Markdown)
+
+En las fuentes tienes los ficheros de hallazgos de las normas ya analizadas.
+Para cada sección, aplica las siguientes instrucciones:
+
+**Sección Reglas del Motor:**
+- Si una regla de esta norma cubre el mismo supuesto que una ya documentada (p.ej. LSE-05),
+  indica en las Notas: "Complementa/Supera a [NORMA-NN]".
+- Si una regla nueva deroga o restringe una anterior, indica: "Prevalece sobre [NORMA-NN]
+  por [rango jerárquico / fecha]" o al revés.
+- Solo omite una regla si cubre exactamente el mismo supuesto. Si añade condiciones,
+  plazos o matices procedimentales propios, inclúyela aunque referencie la norma anterior.
+  En ese caso indica "Cubierta por [NORMA-NN]" solo si es idéntica; si amplía, usa "Complementa a".
+
+**Sección Variables:**
+- Para cada variable, documenta en formato tabla:
+  Variable; Tipo; Naturaleza (dato/calculado/derivado_doc); Estado; Norma de origen
+- Comprueba si ya aparece en los hallazgos anteriores.
+- En Estado indica: "Ya existe (ver [NORMA-NN])" si ya estaba documentada,
+  "Nueva" si es realmente nueva, o "Renombrar: coincide con [nombre_existente]" si hay
+  solapamiento semántico con nombre distinto.
+
+**Sección Excepciones:**
+- Si la excepción ya fue documentada en otra norma, indica de qué norma proviene y si
+  esta norma la amplía, restringe o confirma.
+
+**Sección 4 — Contradicciones o complementos (OBLIGATORIA):**
+- Lista explícita de cada punto de contacto con normas ya analizadas.
+- Cita siempre la regla concreta de la norma anterior (p.ej. LSE-07, RD1955-03) y
+  el artículo exacto de esta norma.
+- Para cada punto indica: Contradicción / Complemento / Prevalencia y quién gana.
+
+No incluyas párrafo introductorio. Empieza directamente con la sección de reglas.
+```
+
+**Nota:** el prompt estándar (sin cruce) solo sirve para la primera norma analizada.
 
 ## Normas procesadas
-| Norma | ID | Estado NotebookLM |
-|---|---|---|
-| LSE 24/2013 | BOE-A-2013-13645 | Hallazgos pendientes de escribir |
+| Norma | ID | Estado NotebookLM | Fichero hallazgos |
+|---|---|---|---|
+| LSE 24/2013 | BOE-A-2013-13645 | Hallazgos escritos | `BOE-A-2013-13645_reglas.md` |
+| RD 1955/2000 | BOE-A-2000-24019 | Hallazgos escritos (v2 + revisión manual) | `BOE-A-2000-24019_reglas.md` |
+| LPACAP Ley 39/2015 | BOE-A-2015-10565 | Hallazgos escritos | `BOE-A-2015-10565_reglas.md` |
+| Ley 21/2013 EIA | BOE-A-2013-12913 | Hallazgos escritos | `BOE-A-2013-12913_reglas.md` |
 
 **Why:** Ahorrar tokens evitando re-explicar el workflow cada sesión y reducir relecturas de ficheros grandes.
 **How to apply:** Al iniciar trabajo normativo, leer esta memoria y `docs/normas/hallazgos_nblm/` en lugar de los ficheros de síntesis completos.
