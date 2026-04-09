@@ -35,6 +35,7 @@ cp "D:\legalize-es\es\BOE-A-XXXX-XXXXX.md" "H:\Mi unidad\bddat-notebooklm\BOE-A-
 4. Exportar resultado de Google Doc como MD → pasar a Claude
 5. Claude escribe `docs/normas/hallazgos_nblm/{BOE-ID}_reglas.md` y hace commit
 6. Acumular 4-5 normas antes de volcar a los ficheros de síntesis
+7. **Cruce regla a regla** — antes de cerrar la sesión, comparar cada regla del hallazgo contra los docs de síntesis y transferir las que falten. No postponer: la sinergia se pierde y habría que repeinarlo todo.
 
 ## Normas procesadas
 
