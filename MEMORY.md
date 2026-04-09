@@ -38,6 +38,9 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 - `windows-mcp` — uvx windows-mcp
 Requieren reinicio de sesión para cargarse.
 
+## NotebookLM — extracción normativa
+- [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/normas/hallazgos_nblm/
+
 ## Integración legalize-es (completado 2026-04-05)
 - [project_legalize_es_pendiente.md](project_legalize_es_pendiente.md) — legalize-es en D:\legalize-es; skills /legalize (local), /boe (estatal), /boja (andaluz)
 
