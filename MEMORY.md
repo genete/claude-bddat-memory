@@ -49,6 +49,7 @@ Requieren reinicio de sesión para cargarse.
 
 ## Issues en curso
 - [project_263_contexto.md](project_263_contexto.md) — fix/263 bugs seguimiento: orden y decisiones de diseño
+- [project_presentacion_reveal.md](project_presentacion_reveal.md) — Presentación Reveal.js (issue #292): sistema visual JA, estructura slides, rama feature/292-reveal-presentacion
 
 ## Decisiones arquitecturales pendientes de implementar
 - [project_motor_rediseno_2026_03_31.md](project_motor_rediseno_2026_03_31.md) — Motor agnóstico + ContextAssembler + controlador de fechas: decisiones, deudas y orden de trabajo (sesión 2026-03-31)
