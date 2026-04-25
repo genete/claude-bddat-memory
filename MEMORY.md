@@ -8,6 +8,7 @@
 - [feedback_skill_legalize.md](feedback_skill_legalize.md) — /legalize solo por orden directa del usuario; /boe y /boja no lo llaman internamente
 - [feedback_expansion_documentos.md](feedback_expansion_documentos.md) — Al escribir en docs de diseño, Claude expande con inferencias propias que no siempre están alineadas; requiere revisión
 - [feedback_git_stash.md](feedback_git_stash.md) — No usar `git checkout --` para descartar cambios no relacionados del usuario
+- [feedback_relectura_contexto.md](feedback_relectura_contexto.md) — No releer ficheros que ya están en contexto de la sesión actual
 - [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Claude tiende a olvidar verificar los anti-bloqueos Bash antes de escribir comandos, causando interrupciones evitables
 - [feedback_milestones.md](feedback_milestones.md) — Issues relacionados van al mismo milestone que su dependencia, no por complejidad percibida
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
@@ -39,7 +40,7 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 Requieren reinicio de sesión para cargarse.
 
 ## NotebookLM — extracción normativa
-- [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/normas/hallazgos_nblm/; incluye paso de cruce regla a regla y nota de refactor pendiente
+- [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/referencia/normas/hallazgos_nblm/; incluye paso de cruce regla a regla y nota de refactor pendiente
 
 ## Integración legalize-es (completado 2026-04-05)
 - [project_legalize_es_pendiente.md](project_legalize_es_pendiente.md) — legalize-es en D:\legalize-es; skills /legalize (local), /boe (estatal), /boja (andaluz)
@@ -55,11 +56,15 @@ Requieren reinicio de sesión para cargarse.
 - [project_motor_rediseno_2026_03_31.md](project_motor_rediseno_2026_03_31.md) — Motor agnóstico + ContextAssembler + controlador de fechas: decisiones, deudas y orden de trabajo (sesión 2026-03-31)
 
 ## Documentación de referencia
-- `docs/GUIA_VISTAS_BOOTSTRAP.md` — tipos de vista y patrón V4 detalle/edición
-- `docs/GUIA_COMPONENTES_INTERACTIVOS.md` — componentes JS (SelectorBusqueda, ScrollInfinito, FiltrosListado). Leer antes de implementar JS.
-- `docs/REGLAS_DESARROLLO.md` — workflow Git, commits, ramas, migraciones
-- `docs/GUIA_GENERAL.md` — arquitectura general y lógica de negocio
-- `docs/REGLAS_BASH.md` — patrones prohibidos en Bash y workarounds
+- `docs/README.md` — índice completo con estado actual (issue #327)
+- `docs/guias/GUIA_VISTAS_BOOTSTRAP.md` — tipos de vista y patrón V4 detalle/edición
+- `docs/guias/GUIA_COMPONENTES_INTERACTIVOS.md` — componentes JS (SelectorBusqueda, ScrollInfinito, FiltrosListado). Leer antes de implementar JS.
+- `docs/guias/REGLAS_DESARROLLO.md` — workflow Git, commits, ramas, migraciones
+- `docs/guias/GUIA_GENERAL.md` — arquitectura general y lógica de negocio
+- `docs/guias/REGLAS_BASH.md` — patrones prohibidos en Bash y workarounds
+- `docs/referencia/` — normativa, diseños activos, ESFTT, PLAN_ESTRATEGIA
+- `docs/historial/` — documentos congelados (ANALISIS_*, DISEÑO_MOTOR_*, PROCEDIMIENTO_*)
+- `docs/decisiones/` — ADR-001 (motor agnóstico), ADR-002 (ESFTT sin fechas)
 
 ## CDN Junta de Andalucía
 - CSS: `https://cdn.juntadeandalucia.es/components/sass/1.2.5/css/` (`fonts.css`, `all.css`, `custom-jda-bootstrap.css`)
