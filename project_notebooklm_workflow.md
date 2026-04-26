@@ -6,7 +6,7 @@ originSessionId: abb34d36-a7fe-4ed3-a093-030aef0ae2f3
 ---
 ## Referencias canónicas
 
-- **Prompts y convenciones:** `docs/normas/PROMPT_NBLM.md` — fuente de verdad del prompt. No duplicar aquí.
+- **Prompts y convenciones:** `docs/referencia/normas/PROMPT_NBLM.md` — fuente de verdad del prompt. No duplicar aquí.
 - **Script consolidado:** `scripts/compile_hallazgos.py` — regenera `hallazgos_consolidados.txt` para el cuaderno.
 - **Script contexto:** `scripts/preparar_contexto_nblm.py` — regenera `contexto_normativo_nblm.txt`.
 
@@ -31,7 +31,7 @@ cp "D:\legalize-es\es\BOE-A-XXXX-XXXXX.md" "H:\Mi unidad\bddat-notebooklm\BOE-A-
 
 1. Regenerar `hallazgos_consolidados.txt` con `compile_hallazgos.py`
 2. Subir norma a analizar al cuaderno como `.txt`
-3. Lanzar prompt desde `docs/normas/PROMPT_NBLM.md` (estándar o intermedio)
+3. Lanzar prompt desde `docs/referencia/normas/PROMPT_NBLM.md` (estándar o intermedio)
 4. Exportar resultado de Google Doc como MD → pasar a Claude
 5. Claude escribe `docs/normas/hallazgos_nblm/{BOE-ID}_reglas.md` y hace commit
 6. Acumular 4-5 normas antes de volcar a los ficheros de síntesis
@@ -51,7 +51,7 @@ cp "D:\legalize-es\es\BOE-A-XXXX-XXXXX.md" "H:\Mi unidad\bddat-notebooklm\BOE-A-
 | RD 223/2008 (LAT) | BOE-A-2008-5269 | `BOE-A-2008-5269_reglas.md` |
 
 **Why:** El prompt vive en git (`PROMPT_NBLM.md`) para tener historial de cambios. La memoria solo apunta a los ficheros canónicos — no duplica contenido.
-**How to apply:** Al iniciar trabajo normativo, leer `docs/normas/PROMPT_NBLM.md` en lugar de esta memoria para el prompt exacto.
+**How to apply:** Al iniciar trabajo normativo, leer `docs/referencia/normas/PROMPT_NBLM.md` en lugar de esta memoria para el prompt exacto.
 
 ## Pendiente: refactor de docs de síntesis (tras terminar MAPEO_CONTEXTO)
 

@@ -2,8 +2,8 @@
 name: feedback_skill_boe
 description: Usar siempre los skills /boe, /boja o /legalize para leer legislación, no WebFetch directamente
 type: feedback
+originSessionId: 84025c15-bdb8-4179-baf0-d2bb6dad4326
 ---
-
 Cuando hay que leer artículos concretos de legislación, usar siempre el skill adecuado:
 
 | Skill | Cuándo usar |
@@ -18,5 +18,6 @@ Nunca usar WebFetch directamente para legislación. Nunca usar `/boe` para norma
 a URLs incorrectas. En sesión 2026-04-05 se separaron los skills: `/boe` ya no gestiona BOJA.
 
 **How to apply:** Identificar primero si la norma es estatal (BOE) o andaluza (BOJA) y elegir
-el skill correspondiente. `/legalize` lo llaman automáticamente `/boe` y `/boja` — no hace falta
-invocarlo manualmente salvo para consultar disponibilidad local.
+el skill correspondiente. Para verificar disponibilidad local, llamar `/legalize` manualmente antes de `/boe` o `/boja`. Los skills NO se encadenan automáticamente entre sí.
+
+**Nota operativa:** legalize-es cubre BOJA consolidado desde 2012; normas pre-2012 siguen necesitando sedeboja vía `/boja`.

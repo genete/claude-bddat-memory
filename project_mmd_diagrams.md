@@ -2,8 +2,8 @@
 name: Diseño diagrama MMD de ESFTT
 description: Decisiones de diseño sobre generación dinámica de diagramas Mermaid para visualizar la estructura ESFTT de un expediente
 type: project
+originSessionId: 84025c15-bdb8-4179-baf0-d2bb6dad4326
 ---
-
 ## API JSON agnóstica primero, MMD como capa posterior
 
 **Decisión:** Crear `/api/expedientes/<id>/arbol` que devuelve JSON puro a 4 niveles (solicitud → fase → trámite → tarea), y sobre ese JSON construir serializadores independientes.

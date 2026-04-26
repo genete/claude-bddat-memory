@@ -14,11 +14,14 @@
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
 - [feedback_proactividad_tecnica.md](feedback_proactividad_tecnica.md) — Inferir el objetivo real, ofrecer alternativas técnicamente superiores antes de ejecutar lo pedido literalmente
 - [feedback_vigencia_modificaciones_normativas.md](feedback_vigencia_modificaciones_normativas.md) — No confundir fecha original de norma con fecha de modificación concreta al evaluar vigencia frente a norma posterior
+- [feedback_issues_en_memory.md](feedback_issues_en_memory.md) — No guardar en memoria estado de issues ni ramas activas; eso es de GitHub y git
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
 Entorno virtual: `D:\BDDAT\venv\Scripts\activate`
-Arranque servidor: `cd /d/BDDAT && source venv/Scripts/activate && python run.py`
+Arranque servidor:
+  - Usuario (manual, `!` en el prompt): `cd /d/BDDAT && source venv/Scripts/activate && python run.py`
+  - Claude (Bash tool — sin source activate): `cd /d/BDDAT && venv/Scripts/python.exe run.py`
 Credenciales Playwright: usuario `CLG`, contraseña `31416`
 
 ## Rama de trabajo
@@ -42,38 +45,5 @@ Requieren reinicio de sesión para cargarse.
 ## NotebookLM — extracción normativa
 - [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/referencia/normas/hallazgos_nblm/; incluye paso de cruce regla a regla y nota de refactor pendiente
 
-## Integración legalize-es (completado 2026-04-05)
-- [project_legalize_es_pendiente.md](project_legalize_es_pendiente.md) — legalize-es en D:\legalize-es; skills /legalize (local), /boe (estatal), /boja (andaluz)
-
-## Diseño experimental (sin issue aún)
+## Diseño experimental
 - [project_mmd_diagrams.md](project_mmd_diagrams.md) — Diagrama MMD dinámico de ESFTT: API JSON agnóstica + estrategia híbrida dos diagramas
-
-## Issues en curso
-- [project_263_contexto.md](project_263_contexto.md) — fix/263 bugs seguimiento: orden y decisiones de diseño
-- [project_presentacion_reveal.md](project_presentacion_reveal.md) — Presentación Reveal.js (issue #292): sistema visual JA, estructura slides, rama feature/292-reveal-presentacion
-
-## Decisiones arquitecturales pendientes de implementar
-- [project_motor_rediseno_2026_03_31.md](project_motor_rediseno_2026_03_31.md) — Motor agnóstico + ContextAssembler + controlador de fechas: decisiones, deudas y orden de trabajo (sesión 2026-03-31)
-
-## Documentación de referencia
-- `docs/README.md` — índice completo con estado actual (issue #327)
-- `docs/guias/GUIA_VISTAS_BOOTSTRAP.md` — tipos de vista y patrón V4 detalle/edición
-- `docs/guias/GUIA_COMPONENTES_INTERACTIVOS.md` — componentes JS (SelectorBusqueda, ScrollInfinito, FiltrosListado). Leer antes de implementar JS.
-- `docs/guias/REGLAS_DESARROLLO.md` — workflow Git, commits, ramas, migraciones
-- `docs/guias/GUIA_GENERAL.md` — arquitectura general y lógica de negocio
-- `docs/guias/REGLAS_BASH.md` — patrones prohibidos en Bash y workarounds
-- `docs/referencia/` — normativa, diseños activos, ESFTT, PLAN_ESTRATEGIA
-- `docs/historial/` — documentos congelados (ANALISIS_*, DISEÑO_MOTOR_*, PROCEDIMIENTO_*)
-- `docs/decisiones/` — ADR-001 (motor agnóstico), ADR-002 (ESFTT sin fechas)
-
-## CDN Junta de Andalucía
-- CSS: `https://cdn.juntadeandalucia.es/components/sass/1.2.5/css/` (`fonts.css`, `all.css`, `custom-jda-bootstrap.css`)
-- JS: `https://cdn.juntadeandalucia.es/components/sass/1.2.5/js/bootstrap.bundle.min.js`
-- Bootstrap Icons en jsdelivr (no incluido en CDN)
-- CDN es CORS-blocked — no inspeccionable via `cssRules` en DevTools
-- Override acordeones en `custom.css`: chevron-right cerrado, chevron-down abierto
-
-## Trampas conocidas
-- **`text-muted` = #bebebe** (casi blanco). Usar `fw-semibold` sin color en labels visibles. Nunca `text-muted` en labels.
-- **AutorizadoTitular:** al crear desde ruta, reutilizar registro revocado si existe (`existente.restaurar()`) en vez de crear duplicado — respeta unique constraint.
-- **`SelectorBusqueda`:** método limpiar es `clear()` (NO `limpiar()`). Formato opciones: `{v: String(id), t: texto}`.
