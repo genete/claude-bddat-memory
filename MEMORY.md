@@ -12,6 +12,7 @@
 - [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Claude tiende a olvidar verificar los anti-bloqueos Bash antes de escribir comandos, causando interrupciones evitables
 - [feedback_milestones.md](feedback_milestones.md) — Issues relacionados van al mismo milestone que su dependencia, no por complejidad percibida
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
+- [feedback_temp_nombre_unico.md](feedback_temp_nombre_unico.md) — Si el fichero temp destino ya existe, NO leerlo: crear uno con nombre distinto (sufijo issue/PR, -v2…) para no gastar tokens en contenido irrelevante
 - [feedback_proactividad_tecnica.md](feedback_proactividad_tecnica.md) — Inferir el objetivo real, ofrecer alternativas técnicamente superiores antes de ejecutar lo pedido literalmente
 - [feedback_vigencia_modificaciones_normativas.md](feedback_vigencia_modificaciones_normativas.md) — No confundir fecha original de norma con fecha de modificación concreta al evaluar vigencia frente a norma posterior
 - [feedback_issues_en_memory.md](feedback_issues_en_memory.md) — No guardar en memoria estado de issues ni ramas activas; eso es de GitHub y git
