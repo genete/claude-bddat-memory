@@ -45,6 +45,9 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 - `windows-mcp` — uvx windows-mcp
 Requieren reinicio de sesión para cargarse.
 
+## Catálogo de documentos
+- [project_catalogo_documentos_alcance.md](project_catalogo_documentos_alcance.md) — Alcance del catálogo: cubre flujo ESFTT, excluye documentación presentada; patrón DR_NO_DUP para tipos del motor
+
 ## NotebookLM — extracción normativa
 - [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/referencia/normas/hallazgos_nblm/; incluye paso de cruce regla a regla y nota de refactor pendiente
 
