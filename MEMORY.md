@@ -53,3 +53,6 @@ Requieren reinicio de sesión para cargarse.
 
 ## Diseño experimental
 - [project_mmd_diagrams.md](project_mmd_diagrams.md) — Diagrama MMD dinámico de ESFTT: API JSON agnóstica + estrategia híbrida dos diagramas
+
+## Estado del proyecto
+- [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
