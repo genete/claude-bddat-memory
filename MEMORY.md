@@ -18,6 +18,7 @@
 - [feedback_issues_en_memory.md](feedback_issues_en_memory.md) — No guardar en memoria estado de issues ni ramas activas; eso es de GitHub y git
 - [feedback_commit_format.md](feedback_commit_format.md) — Formato de commits: `[CATEGORÍA] #N descripción`, NO conventional commits (feat:/fix:/docs:)
 - [feedback_conformidad_implicita.md](feedback_conformidad_implicita.md) — No asumir conformidad implícita a sugerencias de diseño de Claude; esperar confirmación explícita antes de escribir en fuentes de verdad
+- [feedback_analisis_impacto.md](feedback_analisis_impacto.md) — Ante refactorizaciones: presentar tabla de consumidores en TODO el sistema antes de escribir código
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
