@@ -12,3 +12,6 @@ Una conversación = un issue o tarea. No continuar con el siguiente issue en la 
 **Why:** El usuario renombra las sesiones por issue (`/rename Implementar #289`) y las revisa después por nombre. Si una sesión contiene varias tareas, el título no refleja el contenido real y la revisión se complica.
 
 **How to apply:** Al cerrar un issue, si el usuario pregunta qué sigue o pide implementar el siguiente, indicar que conviene abrir una conversación nueva. No iniciar trabajo de un issue distinto en la sesión actual.
+
+**Extensión (mayo 2026):** La regla aplica también cuando se trabaja sobre issues derivados del actual. Actualizar un issue es editar su texto en GitHub; implementarlo (migraciones, código) es trabajo de una sesión nueva. No crear ficheros de implementación aunque parezcan "de paso".
+

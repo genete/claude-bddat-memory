@@ -20,6 +20,7 @@
 - [feedback_conformidad_implicita.md](feedback_conformidad_implicita.md) — No asumir conformidad implícita a sugerencias de diseño de Claude; esperar confirmación explícita antes de escribir en fuentes de verdad
 - [feedback_analisis_impacto.md](feedback_analisis_impacto.md) — Ante refactorizaciones: presentar tabla de consumidores en TODO el sistema antes de escribir código
 - [feedback_una_conversacion_por_issue.md](feedback_una_conversacion_por_issue.md) — Una sesión = un issue; no continuar con el siguiente en la misma conversación
+- [feedback_fuentes_verdad.md](feedback_fuentes_verdad.md) — No tratar derivados como consumidores independientes; si el JSON ya es correcto, los derivados solo necesitan /sync-derivados
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -55,6 +56,9 @@ Requieren reinicio de sesión para cargarse.
 
 ## Diseño experimental
 - [project_mmd_diagrams.md](project_mmd_diagrams.md) — Diagrama MMD dinámico de ESFTT: API JSON agnóstica + estrategia híbrida dos diagramas
+
+## Arquitectura — decisiones pendientes
+- [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
 
 ## Estado del proyecto
 - [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
