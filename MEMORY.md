@@ -21,6 +21,7 @@
 - [feedback_analisis_impacto.md](feedback_analisis_impacto.md) — Ante refactorizaciones: presentar tabla de consumidores en TODO el sistema antes de escribir código
 - [feedback_una_conversacion_por_issue.md](feedback_una_conversacion_por_issue.md) — Una sesión = un issue; no continuar con el siguiente en la misma conversación
 - [feedback_fuentes_verdad.md](feedback_fuentes_verdad.md) — No tratar derivados como consumidores independientes; si el JSON ya es correcto, los derivados solo necesitan /sync-derivados
+- [feedback_git_rm_modelos.md](feedback_git_rm_modelos.md) — Al eliminar ficheros del proyecto, usar git rm en el mismo issue; no dejarlos como código muerto sin importar
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
