@@ -4,6 +4,7 @@
 > El historial de issues cerrados está en `git log` — no duplicar aquí.
 
 ## Feedback de trabajo
+- [feedback_alembic_heads.md](feedback_alembic_heads.md) — Verificar `flask db current` antes de crear migración; si hay múltiples heads, fusionar primero
 - [feedback_skill_boe.md](feedback_skill_boe.md) — Usar siempre el skill /boe para leer legislación; no WebFetch por libre
 - [feedback_skill_legalize.md](feedback_skill_legalize.md) — /legalize solo por orden directa del usuario; /boe y /boja no lo llaman internamente
 - [feedback_expansion_documentos.md](feedback_expansion_documentos.md) — Al escribir en docs de diseño, Claude expande con inferencias propias que no siempre están alineadas; requiere revisión
