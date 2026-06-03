@@ -5,6 +5,7 @@
 
 ## Feedback de trabajo
 - [feedback_alembic_heads.md](feedback_alembic_heads.md) — Verificar `flask db current` antes de crear migración; si hay múltiples heads, fusionar primero
+- [feedback_no_reintentar_latencia.md](feedback_no_reintentar_latencia.md) — Si un tool_result tarda, esperar; NO reemitir el mismo comando en bucle (encola ejecuciones reales)
 - [feedback_skill_boe.md](feedback_skill_boe.md) — Usar siempre el skill /boe para leer legislación; no WebFetch por libre
 - [feedback_skill_legalize.md](feedback_skill_legalize.md) — /legalize solo por orden directa del usuario; /boe y /boja no lo llaman internamente
 - [feedback_expansion_documentos.md](feedback_expansion_documentos.md) — Al escribir en docs de diseño, Claude expande con inferencias propias que no siempre están alineadas; requiere revisión
@@ -24,6 +25,8 @@
 - [feedback_fuentes_verdad.md](feedback_fuentes_verdad.md) — No tratar derivados como consumidores independientes; si el JSON ya es correcto, los derivados solo necesitan /sync-derivados
 - [feedback_git_rm_modelos.md](feedback_git_rm_modelos.md) — Al eliminar ficheros del proyecto, usar git rm en el mismo issue; no dejarlos como código muerto sin importar
 - [feedback_plantilla_dummy_cb.md](feedback_plantilla_dummy_cb.md) — No crear plantilla .docx dummy para CBs; no tiene uso real ni en dev ni en prod
+- [feedback_pr_refs_vs_closes.md](feedback_pr_refs_vs_closes.md) — En issues multi-fase usar `Refs #N`, nunca `Closes #N`, hasta el PR de cierre definitivo
+- [feedback_rama_antes_de_empezar.md](feedback_rama_antes_de_empezar.md) — Crear rama feature/ ANTES de la primera edición; nunca commitear en develop y rectificar después
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -31,7 +34,7 @@ Entorno virtual: `D:\BDDAT\venv\Scripts\activate`
 Arranque servidor:
   - Usuario (manual, `!` en el prompt): `cd /d/BDDAT && source venv/Scripts/activate && python run.py`
   - Claude (Bash tool — sin source activate): `cd /d/BDDAT && venv/Scripts/python.exe run.py`
-Credenciales Playwright: usuario `CLG`, contraseña `31416`
+Credenciales Playwright: usuario `CLG`, contraseña `31416` — login de DOS pasos (multi-rol): ver [project_login_dos_pasos.md](project_login_dos_pasos.md)
 
 ## Rama de trabajo
 Siempre trabajar en `develop`. PRs siempre contra `develop`, no contra `main`.
@@ -51,6 +54,9 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 - `windows-mcp` — uvx windows-mcp
 Requieren reinicio de sesión para cargarse.
 
+## Verificación en navegador
+- [project_verif_arbol_react.md](project_verif_arbol_react.md) — Vista de árbol React: preview_screenshot se cuelga (rAF react-flow), usar Playwright MCP visible; preview headless; transición pending; click nativo en vez de preview_click
+
 ## Catálogo de documentos
 - [project_catalogo_documentos_alcance.md](project_catalogo_documentos_alcance.md) — Alcance del catálogo: cubre flujo ESFTT, excluye documentación presentada; patrón DR_NO_DUP para tipos del motor
 
@@ -62,6 +68,8 @@ Requieren reinicio de sesión para cargarse.
 
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
+- [project_react_workbench_mutaciones.md](project_react_workbench_mutaciones.md) — Isla React workbench multiuso (árbol/listados/proyecto) + mutaciones en servicio reutilizable (camino B, extraer no reescribir); híbrido Jinja+React; archipiélago→ADR aparte
 
 ## Estado del proyecto
 - [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
+- [project_backend_solido_revamping.md](project_backend_solido_revamping.md) — El backend ESFTT absorbe las islas del revamping con casi pura lectura; estimar por lo que hay que construir, no por lo que la vista aparenta
