@@ -6,6 +6,8 @@ originSessionId: 84025c15-bdb8-4179-baf0-d2bb6dad4326
 ---
 Las reglas concretas están en `docs/guias/REGLAS_BASH.md`. El problema no es desconocerlas sino no verificarlas activamente antes de cada comando Bash.
 
+**Regla para subagentes:** Cuando se delega trabajo a un agente (tool `Agent`), el prompt DEBE incluir la instrucción de leer `docs/guias/REGLAS_BASH.md` antes de ejecutar cualquier comando Bash. Los agentes arrancan sin contexto de sesión y no heredan este conocimiento.
+
 **Why:** En sesiones anteriores se han generado comandos con `$()`, newlines, `sed -i` o comillas en flags que dispararon peticiones de aprobación evitables. Además: usar `rm` o `mv` para limpiar temporales — la regla es NO hacer nada, el usuario los borra manualmente.
 
 **How to apply:** Leer `REGLAS_BASH.md` al inicio de cada sesión, ANTES del primer comando Bash. Fallo recurrente: este paso se omite aunque está en la memoria. No hay excepción.

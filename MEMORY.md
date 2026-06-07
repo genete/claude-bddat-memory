@@ -11,6 +11,7 @@
 - [feedback_expansion_documentos.md](feedback_expansion_documentos.md) — Al escribir en docs de diseño, Claude expande con inferencias propias que no siempre están alineadas; requiere revisión
 - [feedback_git_stash.md](feedback_git_stash.md) — No usar `git checkout --` para descartar cambios no relacionados del usuario
 - [feedback_relectura_contexto.md](feedback_relectura_contexto.md) — No releer ficheros que ya están en contexto de la sesión actual
+- [feedback_commits_atomicos_verificados.md](feedback_commits_atomicos_verificados.md) — En refactors grandes, commits atómicos verificados uno a uno, no un commit monolítico
 - [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Claude tiende a olvidar verificar los anti-bloqueos Bash antes de escribir comandos, causando interrupciones evitables
 - [feedback_milestones.md](feedback_milestones.md) — Issues relacionados van al mismo milestone que su dependencia, no por complejidad percibida
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
@@ -27,6 +28,7 @@
 - [feedback_plantilla_dummy_cb.md](feedback_plantilla_dummy_cb.md) — No crear plantilla .docx dummy para CBs; no tiene uso real ni en dev ni en prod
 - [feedback_pr_refs_vs_closes.md](feedback_pr_refs_vs_closes.md) — En issues multi-fase usar `Refs #N`, nunca `Closes #N`, hasta el PR de cierre definitivo
 - [feedback_rama_antes_de_empezar.md](feedback_rama_antes_de_empezar.md) — Crear rama feature/ ANTES de la primera edición; nunca commitear en develop y rectificar después
+- [feedback_checklist_body_issue.md](feedback_checklist_body_issue.md) — Tareas/checklists pendientes van al cuerpo del issue, no a comentarios (se le pasan al revisar; y los checkbox del body cuentan progreso)
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -62,6 +64,9 @@ Requieren reinicio de sesión para cargarse.
 
 ## NotebookLM — extracción normativa
 - [project_notebooklm_workflow.md](project_notebooklm_workflow.md) — Workflow NotebookLM+Claude para peinar normas AT; Drive en H:\Mi unidad\bddat-notebooklm\; hallazgos en docs/referencia/normas/hallazgos_nblm/; incluye paso de cruce regla a regla y nota de refactor pendiente
+
+## Ecosistema externo (managers)
+- [project_ptwanda_estudio_dom.md](project_ptwanda_estudio_dom.md) — Estudio DOM de PTWANDA para ptwanda-manager: acceso DNI/pass (no cert), bloqueo permanente (liberar navegando a inicio), descarga por refdoc; doc vivo en docs/referencia/ESTUDIO_DOM_PTWANDA.md
 
 ## Diseño experimental
 - [project_mmd_diagrams.md](project_mmd_diagrams.md) — Diagrama MMD dinámico de ESFTT: API JSON agnóstica + estrategia híbrida dos diagramas
