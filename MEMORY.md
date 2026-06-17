@@ -29,6 +29,7 @@
 - [feedback_pr_refs_vs_closes.md](feedback_pr_refs_vs_closes.md) — En issues multi-fase usar `Refs #N`, nunca `Closes #N`, hasta el PR de cierre definitivo
 - [feedback_rama_antes_de_empezar.md](feedback_rama_antes_de_empezar.md) — Crear rama feature/ ANTES de la primera edición; nunca commitear en develop y rectificar después
 - [feedback_checklist_body_issue.md](feedback_checklist_body_issue.md) — Tareas/checklists pendientes van al cuerpo del issue, no a comentarios (se le pasan al revisar; y los checkbox del body cuentan progreso)
+- [feedback_consolidar_antes_de_nuevo.md](feedback_consolidar_antes_de_nuevo.md) — Orden de roadmap: consolidar infra + migrar lo existente antes de construir vistas nuevas aisladas; distinguir lo preceptivo de lo importante
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -74,6 +75,10 @@ Requieren reinicio de sesión para cargarse.
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
 - [project_react_workbench_mutaciones.md](project_react_workbench_mutaciones.md) — Isla React workbench multiuso (árbol/listados/proyecto) + mutaciones en servicio reutilizable (camino B, extraer no reescribir); híbrido Jinja+React; archipiélago→ADR aparte
+- [project_inspector_vs_modal_scripts.md](project_inspector_vs_modal_scripts.md) — Inspector (capa 2) NO re-ejecuta los <script> de fragmentos; modal grande (capa 3) SÍ → JS pesado en capa 3 o como delegación global (patrón ADR-023, migraciones de listados)
+
+## Ecosistema externo — integración bandeja / portafirmas
+- [project_ecosistema_bandeja_token.md](project_ecosistema_bandeja_token.md) — Token BDDAT:<n> para recuperar nº comunicación de bandeja; Port@firmas opaco (scraping inviable); repos exploratorios bandeja-downloader/ptwanda-tramitador/notifica-poc
 
 ## Estado del proyecto
 - [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
