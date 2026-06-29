@@ -60,6 +60,9 @@ Requieren reinicio de sesión para cargarse.
 ## Verificación en navegador
 - [project_verif_arbol_react.md](project_verif_arbol_react.md) — Vista de árbol React: preview_screenshot se cuelga (rAF react-flow), usar Playwright MCP visible; preview headless; transición pending; click nativo en vez de preview_click
 
+## Arquitectura — árbol del expediente
+- [project_arbol_crud_api.md](project_arbol_crud_api.md) — El CRUD del árbol vive en `api_expedientes.py` (/nodo/...), NO en `api_bc.py` (muerto desde #519); verificar el consumidor real antes de refactorizar permisos/comportamiento del árbol
+
 ## Catálogo de documentos
 - [project_catalogo_documentos_alcance.md](project_catalogo_documentos_alcance.md) — Alcance del catálogo: cubre flujo ESFTT, excluye documentación presentada; patrón DR_NO_DUP para tipos del motor
 

@@ -9,12 +9,13 @@ metadata:
 
 Verificar la isla **expediente-arbol** (react-flow) en navegador tiene varias trampas de tooling:
 
-- **`preview_screenshot` se CUELGA (timeout 30s) en la vista de árbol**: el bucle `requestAnimationFrame`
-  continuo de react-flow impide al capturador alcanzar estado "idle". El renderer está vivo
-  (`preview_snapshot` y `preview_eval` funcionan siempre). → Para capturas usar **Playwright MCP**
-  (navegador VISIBLE): `browser_navigate` + login fetch + `browser_take_screenshot`. Guardar siempre en
-  `.playwright-mcp/nombre.png` (si das nombre sin prefijo, cae en la raíz del repo, untracked, y `rm`/`mv`
-  están bloqueados).
+- **`preview_screenshot` se CUELGA (timeout 30s) en islas que mantienen rAF/observers vivos**: confirmado
+  en la vista de árbol (bucle `requestAnimationFrame` de react-flow) Y en la isla **estadisticas** (Recharts
+  `ResponsiveContainer`, que monitoriza tamaño en bucle; ni siquiera `isAnimationActive={false}` lo evita).
+  El renderer está vivo (`preview_snapshot` y `preview_eval` funcionan siempre y bastan para verificar
+  estructura + valores). → Para capturas usar **Playwright MCP** (navegador VISIBLE): `browser_navigate` +
+  login fetch + `browser_take_screenshot`. Guardar siempre en `.playwright-mcp/nombre.png` (si das nombre
+  sin prefijo, cae en la raíz del repo, untracked, y `rm`/`mv` están bloqueados).
 - **El navegador de preview (`preview_start` "bddat", 5000) es HEADLESS**: el `Screenshot` de windows-mcp
   captura el escritorio real del usuario, no la preview. No sirve para ver la isla.
 - **CSSTransition se queda `pending` en `currentTime:0` en el preview headless**: medir `opacity` de un
