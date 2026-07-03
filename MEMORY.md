@@ -75,6 +75,9 @@ Requieren reinicio de sesión para cargarse.
 ## Diseño experimental
 - [project_mmd_diagrams.md](project_mmd_diagrams.md) — Diagrama MMD dinámico de ESFTT: API JSON agnóstica + estrategia híbrida dos diagramas
 
+## Arquitectura — motor y bloqueos entre fases
+- [project_bloqueos_naturales_vs_motor.md](project_bloqueos_naturales_vs_motor.md) — Bloqueo de motor (tasa, universal) vs imposibilidad natural por falta de documento (separata→Consultas, EIA→AAU integrada); esto último no lleva issue propio
+
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
 - [project_react_workbench_mutaciones.md](project_react_workbench_mutaciones.md) — Isla React workbench multiuso (árbol/listados/proyecto) + mutaciones en servicio reutilizable (camino B, extraer no reescribir); híbrido Jinja+React; archipiélago→ADR aparte
