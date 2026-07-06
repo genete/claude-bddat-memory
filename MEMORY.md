@@ -32,6 +32,7 @@
 - [feedback_consolidar_antes_de_nuevo.md](feedback_consolidar_antes_de_nuevo.md) — Orden de roadmap: consolidar infra + migrar lo existente antes de construir vistas nuevas aisladas; distinguir lo preceptivo de lo importante
 - [feedback_verificar_atribucion_codigo.md](feedback_verificar_atribucion_codigo.md) — Al mapear código→catálogo por grep, confirmar la clase real tras un `.codigo` (puede ser un dataclass interno, no un modelo) antes de darlo por bueno
 - [feedback_emplazamiento_navegacion.md](feedback_emplazamiento_navegacion.md) — Al dar de alta una pantalla admin nueva, el patrón de UI a copiar y su emplazamiento de navegación son decisiones distintas; aplicar el test de ADR-029, no copiar el módulo hermano más parecido
+- [feedback_worktree_venv_env.md](feedback_worktree_venv_env.md) — Worktree nuevo: venv propio sin pytest + falta .env (gitignored); smoke tests corren contra BD real, limpiar filas de alta con fixture autouse
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
