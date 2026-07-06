@@ -30,6 +30,8 @@
 - [feedback_rama_antes_de_empezar.md](feedback_rama_antes_de_empezar.md) — Crear rama feature/ ANTES de la primera edición; nunca commitear en develop y rectificar después
 - [feedback_checklist_body_issue.md](feedback_checklist_body_issue.md) — Tareas/checklists pendientes van al cuerpo del issue, no a comentarios (se le pasan al revisar; y los checkbox del body cuentan progreso)
 - [feedback_consolidar_antes_de_nuevo.md](feedback_consolidar_antes_de_nuevo.md) — Orden de roadmap: consolidar infra + migrar lo existente antes de construir vistas nuevas aisladas; distinguir lo preceptivo de lo importante
+- [feedback_verificar_atribucion_codigo.md](feedback_verificar_atribucion_codigo.md) — Al mapear código→catálogo por grep, confirmar la clase real tras un `.codigo` (puede ser un dataclass interno, no un modelo) antes de darlo por bueno
+- [feedback_emplazamiento_navegacion.md](feedback_emplazamiento_navegacion.md) — Al dar de alta una pantalla admin nueva, el patrón de UI a copiar y su emplazamiento de navegación son decisiones distintas; aplicar el test de ADR-029, no copiar el módulo hermano más parecido
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -77,6 +79,7 @@ Requieren reinicio de sesión para cargarse.
 
 ## Arquitectura — motor y bloqueos entre fases
 - [project_bloqueos_naturales_vs_motor.md](project_bloqueos_naturales_vs_motor.md) — Bloqueo de motor (tasa, universal) vs imposibilidad natural por falta de documento (separata→Consultas, EIA→AAU integrada); esto último no lleva issue propio
+- [project_capas_catalogo_motor.md](project_capas_catalogo_motor.md) — 3 capas independientes en tipos_fases/tramites/tareas: vocabulario (libre), reglas_motor (dato, futuro #170/#171), casos especiales (código); generalizar Variable Registry evaluado y descartado
 
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
