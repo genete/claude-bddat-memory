@@ -33,6 +33,12 @@
 - [feedback_verificar_atribucion_codigo.md](feedback_verificar_atribucion_codigo.md) — Al mapear código→catálogo por grep, confirmar la clase real tras un `.codigo` (puede ser un dataclass interno, no un modelo) antes de darlo por bueno
 - [feedback_emplazamiento_navegacion.md](feedback_emplazamiento_navegacion.md) — Al dar de alta una pantalla admin nueva, el patrón de UI a copiar y su emplazamiento de navegación son decisiones distintas; aplicar el test de ADR-029, no copiar el módulo hermano más parecido
 - [feedback_worktree_venv_env.md](feedback_worktree_venv_env.md) — Worktree nuevo: venv propio sin pytest + falta .env (gitignored); smoke tests corren contra BD real, limpiar filas de alta con fixture autouse
+- [feedback_no_inventar_aislamiento_sin_ruta_herencia.md](feedback_no_inventar_aislamiento_sin_ruta_herencia.md) — No proponer aislamiento entre datos ficticios/reales sin verificar antes si existe ruta de herencia dev→prod
+- [feedback_mapear_todo_aunque_implementacion_parcial.md](feedback_mapear_todo_aunque_implementacion_parcial.md) — Al planificar cobertura de cara a un hito, mapear todos los mecanismos aunque la implementación de algunos quede en placeholder
+- [feedback_verificar_rama_antes_de_commit.md](feedback_verificar_rama_antes_de_commit.md) — Verificar rama git actual antes de commitear en sesiones largas; el snapshot inicial de gitStatus puede haber quedado obsoleto
+
+## Sobre Carlos
+- [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
 
 ## Stack
 Python 3 + Flask + SQLAlchemy + PostgreSQL + Bootstrap 5.3 + Jinja2
@@ -86,6 +92,9 @@ Requieren reinicio de sesión para cargarse.
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
 - [project_react_workbench_mutaciones.md](project_react_workbench_mutaciones.md) — Isla React workbench multiuso (árbol/listados/proyecto) + mutaciones en servicio reutilizable (camino B, extraer no reescribir); híbrido Jinja+React; archipiélago→ADR aparte
 - [project_inspector_vs_modal_scripts.md](project_inspector_vs_modal_scripts.md) — Inspector (capa 2) NO re-ejecuta los <script> de fragmentos; modal grande (capa 3) SÍ → JS pesado en capa 3 o como delegación global (patrón ADR-023, migraciones de listados)
+
+## Arquitectura — tarea ANALIZAR (confluencia #495/#581/#440/#442)
+- [project_diseno_tarea_analizar_442.md](project_diseno_tarea_analizar_442.md) — Reparto inspector/modal (#495+#581 inline, #440 modal, #442 dueño del contenedor) y regla de cita normativa en defectos compilados: sin norma_id no hay placeholder, se omite sin más
 
 ## Ecosistema externo — integración bandeja / portafirmas
 - [project_ecosistema_bandeja_token.md](project_ecosistema_bandeja_token.md) — Token BDDAT:<n> para recuperar nº comunicación de bandeja; Port@firmas opaco (scraping inviable); repos exploratorios bandeja-downloader/ptwanda-tramitador/notifica-poc
