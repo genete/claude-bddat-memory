@@ -102,3 +102,8 @@ Requieren reinicio de sesión para cargarse.
 ## Estado del proyecto
 - [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
 - [project_backend_solido_revamping.md](project_backend_solido_revamping.md) — El backend ESFTT absorbe las islas del revamping con casi pura lectura; estimar por lo que hay que construir, no por lo que la vista aparenta
+
+## Gestión de foco / clasificación de issues
+- [project_clasificacion_issues_4bloques.md](project_clasificacion_issues_4bloques.md) — Esquema acordado: 4 bloques ortogonales multi-etiqueta (rol / tramitación directa / mantenimiento / residual) como clasificación primaria; zona de código pasa a eje técnico secundario
+- [project_adr030_coverage_matrix_pattern.md](project_adr030_coverage_matrix_pattern.md) — Patrón de ADR-030 (matriz dimensión×valor con placeholders explícitos) aplicable más allá de tests: huecos por rol/motor sin issue filed son invisibles a cualquier clasificación de issues existentes
+- [project_plan_estrategia_mapa_necesidades.md](project_plan_estrategia_mapa_necesidades.md) — PLAN_ESTRATEGIA §D/§G ya es el mapa de necesidades por rol y por milestone (confirma que los milestones siguen valiendo); §H revela deriva de la filosofía original de "issues mínimos" (2-3 activos), posible causa parcial del "efecto hidra"
