@@ -15,3 +15,5 @@ Una conversación = un issue o tarea. No continuar con el siguiente issue en la 
 
 **Extensión (mayo 2026):** La regla aplica también cuando se trabaja sobre issues derivados del actual. Actualizar un issue es editar su texto en GitHub; implementarlo (migraciones, código) es trabajo de una sesión nueva. No crear ficheros de implementación aunque parezcan "de paso".
 
+**Excepción explícita (julio 2026, #588/#589/#590):** Cuando varios issues son piezas de la misma ADR/decisión de diseño y comparten contexto de conocimiento profundo (p. ej. los tres issues de reparto de una misma ADR "por unidad de PR"), el usuario puede pedir encadenarlos en una sola sesión — rama+PR por issue igualmente, pero sin abrir conversación nueva entre ellos. El criterio que dio el usuario: "al estar relacionados los tres íntimamente, el contexto se reaprovecha mejor que un hilo para cada uno". No asumir esta excepción por iniciativa propia — pedirla explícitamente si varios issues muy relacionados podrían beneficiarse, pero esperar confirmación antes de encadenar.
+
