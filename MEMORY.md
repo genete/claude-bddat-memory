@@ -38,6 +38,7 @@
 - [feedback_verificar_rama_antes_de_commit.md](feedback_verificar_rama_antes_de_commit.md) — Verificar rama git actual antes de commitear en sesiones largas; el snapshot inicial de gitStatus puede haber quedado obsoleto
 - [feedback_docs_vivos_sin_issue.md](feedback_docs_vivos_sin_issue.md) — Ediciones a ADRs/docs de diseño vivos no necesitan issue ni rama feature/; commit directo a develop
 - [feedback_contexto_actual_solo_tras_merge.md](feedback_contexto_actual_solo_tras_merge.md) — CONTEXTO_ACTUAL.md "Hecho" se actualiza solo tras mergear el PR, no en rama/PR abierto; sin encolar histórico, solo lo último
+- [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Ante duda "esto no me cuadra" sobre código, verificar con git log/show y datos reales de BD, no solo releer código actual
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
@@ -93,7 +94,8 @@ Requieren reinicio de sesión para cargarse.
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
 - [project_fusion_n012_n013.md](project_fusion_n012_n013.md) — N012/N013 son en el fondo la misma necesidad (distinción por rol artificiosa); pendiente fusionar en catálogo, no como efecto colateral de otro issue
-- [project_organizacion_documental_pendiente.md](project_organizacion_documental_pendiente.md) — #572 no es candidato a "próximo" aislado: forma parte de un concepto más amplio de organización documental sin estudiar, riesgo de doble migración
+- [project_organizacion_documental_pendiente.md](project_organizacion_documental_pendiente.md) — Sesión de organización documental resuelta en ADR-032; #572 ortogonal pero diferido a propósito por Carlos, no por dependencia técnica
+- [project_adr032_ingesta_documentos.md](project_adr032_ingesta_documentos.md) — ADR-032: dos vías de entrada al pool (in situ/multipart), rutas relativas, encaje por primera vinculación; regresión real detectada en #180
 - [project_react_workbench_mutaciones.md](project_react_workbench_mutaciones.md) — Isla React workbench multiuso (árbol/listados/proyecto) + mutaciones en servicio reutilizable (camino B, extraer no reescribir); híbrido Jinja+React; archipiélago→ADR aparte
 - [project_inspector_vs_modal_scripts.md](project_inspector_vs_modal_scripts.md) — Inspector (capa 2) NO re-ejecuta los <script> de fragmentos; modal grande (capa 3) SÍ → JS pesado en capa 3 o como delegación global (patrón ADR-023, migraciones de listados)
 

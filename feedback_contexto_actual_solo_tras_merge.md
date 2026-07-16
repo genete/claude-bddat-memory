@@ -28,3 +28,11 @@ ocurra. Al editar, sustituir el contenido de "Hecho" por el issue recién
 cerrado (no añadir a una lista creciente). La sección "Próximo" sigue
 requiriendo propuesta + confirmación explícita del usuario (regla ya
 existente en `CLAUDE.md`), independiente de esta.
+
+**Patrón de fallo concreto (recurrente, 2026-07-16):** el reflejo natural al
+cerrar un issue nuevo es *añadir* su resumen a continuación del texto de
+Hecho ya existente ("por si acaso se pierde contexto del cierre anterior").
+Eso es exactamente el error — Carlos tuvo que pedir explícitamente "aligera
+Hecho, solo lo último" tras verlo. Antes de escribir el Edit, releer la regla:
+el nuevo contenido de Hecho **reemplaza por completo** al anterior, no lo
+precede ni lo sigue.
