@@ -4,6 +4,7 @@
 > El historial de issues cerrados está en `git log` — no duplicar aquí.
 
 ## Feedback de trabajo
+- [feedback_invariante_vs_regla_motor.md](feedback_invariante_vs_regla_motor.md) — Antes de implementar una salvaguarda: ¿invariante (hardcode), modelo legal (reglas_motor) o dato de catálogo? Decirlo en la propuesta; por defecto permitir con justificación, no bloquear
 - [feedback_alembic_heads.md](feedback_alembic_heads.md) — Verificar `flask db current` antes de crear migración; si hay múltiples heads, fusionar primero
 - [feedback_no_reintentar_latencia.md](feedback_no_reintentar_latencia.md) — Si un tool_result tarda, esperar; NO reemitir el mismo comando en bucle (encola ejecuciones reales)
 - [feedback_skill_boe.md](feedback_skill_boe.md) — Usar siempre el skill /boe para leer legislación; no WebFetch por libre
