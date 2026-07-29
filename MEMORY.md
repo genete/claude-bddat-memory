@@ -12,7 +12,7 @@
 - [feedback_git_stash.md](feedback_git_stash.md) — No usar `git checkout --` para descartar cambios no relacionados del usuario
 - [feedback_relectura_contexto.md](feedback_relectura_contexto.md) — No releer ficheros que ya están en contexto de la sesión actual
 - [feedback_commits_atomicos_verificados.md](feedback_commits_atomicos_verificados.md) — En refactors grandes, commits atómicos verificados uno a uno, no un commit monolítico
-- [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — Claude tiende a olvidar verificar los anti-bloqueos Bash antes de escribir comandos, causando interrupciones evitables
+- [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — RESUELTO por hook `.claude/hooks/reglas_bash_guard.py`: deniega los anti-patrones. Si deniega, reescribir con el arreglo indicado; qué queda fuera de su cobertura
 - [feedback_milestones.md](feedback_milestones.md) — Issues relacionados van al mismo milestone que su dependencia, no por complejidad percibida
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
 - [feedback_temp_nombre_unico.md](feedback_temp_nombre_unico.md) — Si el fichero temp destino ya existe, NO leerlo: crear uno con nombre distinto (sufijo issue/PR, -v2…) para no gastar tokens en contenido irrelevante
@@ -38,7 +38,8 @@
 - [feedback_verificar_rama_antes_de_commit.md](feedback_verificar_rama_antes_de_commit.md) — Verificar rama git actual antes de commitear en sesiones largas; el snapshot inicial de gitStatus puede haber quedado obsoleto
 - [feedback_docs_vivos_sin_issue.md](feedback_docs_vivos_sin_issue.md) — Ediciones a ADRs/docs de diseño vivos no necesitan issue ni rama feature/; commit directo a develop
 - [feedback_contexto_actual_solo_tras_merge.md](feedback_contexto_actual_solo_tras_merge.md) — CONTEXTO_ACTUAL.md "Hecho" se actualiza solo tras mergear el PR, no en rama/PR abierto; sin encolar histórico, solo lo último
-- [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Ante duda "esto no me cuadra" sobre código, verificar con git log/show y datos reales de BD, no solo releer código actual
+- [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Verificar con git log/show y datos de BD; pero la BD de desarrollo ilustra, no prueba (ficticia, desechable, con residuos previos a las salvaguardas). No revertir datos tras pruebas de UI
+- [feedback_enganche_temprano_vs_tardio.md](feedback_enganche_temprano_vs_tardio.md) — Ante dos puntos de enganche candidatos, preferir el más temprano si el dato disparador ya se fija ahí (caso #657: clasificación en subida, no asociación a tarea)
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
@@ -63,14 +64,12 @@ Usar siempre `D:\BDDAT\docs_prueba\temp\` (allowlisted, gitignored). No borrar n
 - `C:\Users\carlo\.claude\plans` — repositorio git gestionado autónomamente por el usuario
 Claude no debe hacer commits ni gestionar git en estas rutas.
 
-## MCPs configurados en Claude Code (~/.claude.json scope user)
-- `postgres` — npx @modelcontextprotocol/server-postgres → bddat (usuario bddat_admin)
-- `playwright` — npx @playwright/mcp@latest
-- `windows-mcp` — uvx windows-mcp
-Requieren reinicio de sesión para cargarse.
+## MCPs configurados en Claude Code
+- [project_mcps_configurados.md](project_mcps_configurados.md) — postgres (usuario claude_desktop, solo lectura), playwright, windows-mcp; perfil LGC005; comando windows-mcp corregido
 
 ## Verificación en navegador
-- [project_verif_arbol_react.md](project_verif_arbol_react.md) — Vista de árbol React: preview_screenshot se cuelga (rAF react-flow), usar Playwright MCP visible; preview headless; transición pending; click nativo en vez de preview_click
+- [feedback_navegador_integrado_por_defecto.md](feedback_navegador_integrado_por_defecto.md) — mcp__Claude_Browser__* por defecto, sin preguntar; Playwright MCP para otros usos
+- [project_verif_arbol_react.md](project_verif_arbol_react.md) — Verificar en navegador integrado Claude Code Desktop (mcp__Claude_Browser__*), no Playwright MCP (reservado para otros usos)
 
 ## Arquitectura — árbol del expediente
 - [project_arbol_crud_api.md](project_arbol_crud_api.md) — El CRUD del árbol vive en `api_expedientes.py` (/nodo/...), NO en `api_bc.py` (muerto desde #519); verificar el consumidor real antes de refactorizar permisos/comportamiento del árbol
@@ -108,6 +107,9 @@ Requieren reinicio de sesión para cargarse.
 ## Estado del proyecto
 - [project_estado_mayo2026.md](project_estado_mayo2026.md) — Snapshot mayo 2026: core técnico construido, cuellos de botella en datos ESFTT y UI de segundo orden; huecos sin issue identificados
 - [project_backend_solido_revamping.md](project_backend_solido_revamping.md) — El backend ESFTT absorbe las islas del revamping con casi pura lectura; estimar por lo que hay que construir, no por lo que la vista aparenta
+
+## Arquitectura — notificaciones (NOTIFICAR)
+- [project_adr034_notificaciones_tarea_id.md](project_adr034_notificaciones_tarea_id.md) — ADR-034: notificaciones ancla por tarea_id (no vitaminado de documento), dos caminos de escritura, justificante intermedio nunca es Documento, generalización BANDEJA/SIR
 
 ## Gestión de foco / clasificación de issues
 - [project_clasificacion_issues_4bloques.md](project_clasificacion_issues_4bloques.md) — Esquema acordado: 4 bloques ortogonales multi-etiqueta (rol / tramitación directa / mantenimiento / residual) como clasificación primaria; zona de código pasa a eje técnico secundario

@@ -1,22 +1,32 @@
 ---
 name: feedback_antibloqueos_bash
-description: Claude tiende a olvidar verificar los patrones anti-bloqueo Bash antes de escribir comandos, causando interrupciones innecesarias al usuario
+description: Las reglas de REGLAS_BASH.md ya no dependen de recordarlas — las aplica un hook PreToolUse; qué hacer cuando deniega y qué queda fuera de su cobertura
 type: feedback
 originSessionId: 84025c15-bdb8-4179-baf0-d2bb6dad4326
+modified: 2026-07-29T06:16:38.538Z
 ---
-Las reglas concretas están en `docs/guias/REGLAS_BASH.md`. El problema no es desconocerlas sino no verificarlas activamente antes de cada comando Bash.
 
-**Regla para subagentes:** Cuando se delega trabajo a un agente (tool `Agent`), el prompt DEBE incluir la instrucción de leer `docs/guias/REGLAS_BASH.md` antes de ejecutar cualquier comando Bash. Los agentes arrancan sin contexto de sesión y no heredan este conocimiento.
+**Resuelto por mecanismo (2026-07-29).** Esta memoria registraba un fallo recurrente:
+Claude olvidaba verificar los anti-patrones Bash aunque `CLAUDE.md` lo ordenara y aunque
+hubiera leído `docs/guias/REGLAS_BASH.md` al inicio de sesión (recaída confirmada muchos
+turnos después, en un comando "trivial"). Carlos zanjó que la solución no era otra memoria.
 
-**Why:** En sesiones anteriores se han generado comandos con `$()`, newlines, `sed -i` o comillas en flags que dispararon peticiones de aprobación evitables. Además: usar `rm` o `mv` para limpiar temporales — la regla es NO hacer nada, el usuario los borra manualmente.
+Ahora lo aplica `.claude/hooks/reglas_bash_guard.py` (hook PreToolUse sobre Bash, declarado
+en `.claude/settings.json`): deniega el comando antes de que llegue al usuario, con la regla
+y el arreglo concreto en el mensaje.
 
-**How to apply:** Leer `REGLAS_BASH.md` al inicio de cada sesión, ANTES del primer comando Bash. Fallo recurrente: este paso se omite aunque está en la memoria. No hay excepción.
+**How to apply:** si un comando sale denegado con «REGLAS_BASH.md — anti-patrón detectado»,
+reescribirlo con el arreglo que indica el mensaje. **Nunca reintentar el mismo comando** —
+el guard es determinista, volverá a denegar (ver [[feedback_no_reintentar_latencia]]).
 
-Puntos críticos a recordar siempre:
-- Temporales en docs_prueba/temp/: NO hacer nada — ni rm ni mv (ambos bloqueados). Dejar el fichero; el usuario lo borra manualmente.
-- Rutas: siempre `/` (Unix), nunca `\` (Windows)
-- Sustitución: nunca `$()` ni backticks — separar en llamadas Bash
-- Escritura: nunca `sed -i` ni redirección `>` — usar tools Edit/Write
-- **`gh issue create` / `gh pr create` con body multilínea o con `#`:** SIEMPRE `Write` body a `docs_prueba/temp/` → `--body-file`. NUNCA `--body "..."` con saltos de línea o `#`.
-- **`git commit` con mensaje multilínea:** `Write` mensaje → `commit -F fichero`. NUNCA `git commit -m "$(cat ...)"` ni heredoc inline.
-- **Listados de directorio**: nunca `ls` en Bash — usar `Glob` o `Get-ChildItem` (PowerShell).
+**Qué NO cubre el guard** (excluido a propósito para no generar falsos positivos, que
+cuestan tanto como el bloqueo que evitan) — aquí sigue haciendo falta criterio:
+- Redirección `>` a fichero: en esta máquina no dispara aprobación y `2>/dev/null` es
+  constante. Aun así, para *generar contenido* la vía correcta es la tool `Write`.
+- `ls`: preferir `Glob` o `Get-ChildItem`, pero hay entradas de `ls` en la allowlist.
+- Temporales en `docs_prueba/temp/`: el guard sí bloquea `rm`/`mv` sobre esa ruta. Si el
+  fichero destino ya existe, crear otro con sufijo distinto — no leerlo
+  (ver [[feedback_temp_nombre_unico]], [[feedback_rm_temp]]).
+
+Si la tabla de `REGLAS_BASH.md` cambia, actualizar la lista `REGLAS` del guard: el script es
+derivado, la guía es la fuente de verdad.
