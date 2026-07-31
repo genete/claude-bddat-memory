@@ -38,7 +38,7 @@
 - [feedback_mapear_todo_aunque_implementacion_parcial.md](feedback_mapear_todo_aunque_implementacion_parcial.md) — Al planificar cobertura de cara a un hito, mapear todos los mecanismos aunque la implementación de algunos quede en placeholder
 - [feedback_verificar_rama_antes_de_commit.md](feedback_verificar_rama_antes_de_commit.md) — Verificar rama git actual antes de commitear en sesiones largas; el snapshot inicial de gitStatus puede haber quedado obsoleto
 - [feedback_docs_vivos_sin_issue.md](feedback_docs_vivos_sin_issue.md) — Ediciones a ADRs/docs de diseño vivos no necesitan issue ni rama feature/; commit directo a develop
-- [feedback_contexto_actual_solo_tras_merge.md](feedback_contexto_actual_solo_tras_merge.md) — CONTEXTO_ACTUAL.md "Hecho" se actualiza solo tras mergear el PR, no en rama/PR abierto; sin encolar histórico, solo lo último
+- [feedback_contexto_actual_solo_tras_merge.md](feedback_contexto_actual_solo_tras_merge.md) — CONTEXTO_ACTUAL.md "Hecho" se actualiza solo tras mergear el PR, sin encolar histórico; y registra solo lo que NO está en ADRs, MDs ni issues
 - [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Verificar con git log/show y datos de BD; pero la BD de desarrollo ilustra, no prueba (ficticia, desechable, con residuos previos a las salvaguardas). No revertir datos tras pruebas de UI
 - [feedback_enganche_temprano_vs_tardio.md](feedback_enganche_temprano_vs_tardio.md) — Ante dos puntos de enganche candidatos, preferir el más temprano si el dato disparador ya se fija ahí (caso #657: clasificación en subida, no asociación a tarea)
 
@@ -67,6 +67,9 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 
 ## MCPs configurados en Claude Code
 - [project_mcps_configurados.md](project_mcps_configurados.md) — postgres (usuario claude_desktop, solo lectura), playwright, windows-mcp; perfil LGC005; comando windows-mcp corregido
+
+## Herramientas de escritorio
+- [project_libreoffice_headless.md](project_libreoffice_headless.md) — Invocar LibreOffice headless: `soffice.com` (el `.exe` se cuelga), perfil aparte, filtros de conversión; el render a PNG miente con los acentos
 
 ## Verificación en navegador
 - [feedback_navegador_integrado_por_defecto.md](feedback_navegador_integrado_por_defecto.md) — mcp__Claude_Browser__* por defecto, sin preguntar; Playwright MCP para otros usos
