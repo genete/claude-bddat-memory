@@ -14,6 +14,7 @@
 - [feedback_relectura_contexto.md](feedback_relectura_contexto.md) — No releer ficheros que ya están en contexto de la sesión actual
 - [feedback_commits_atomicos_verificados.md](feedback_commits_atomicos_verificados.md) — En refactors grandes, commits atómicos verificados uno a uno, no un commit monolítico
 - [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — RESUELTO por hook `.claude/hooks/reglas_bash_guard.py`: deniega los anti-patrones. Si deniega, reescribir con el arreglo indicado; qué queda fuera de su cobertura
+- [feedback_bash_vs_herramientas_dedicadas.md](feedback_bash_vs_herramientas_dedicadas.md) — No usar Bash para ls/find/grep/cat cuando Glob/Grep/Read cubren el caso, ni para consultas triviales; aprobar el permiso consolidaría el patrón en settings
 - [feedback_milestones.md](feedback_milestones.md) — Issues relacionados van al mismo milestone que su dependencia, no por complejidad percibida
 - [feedback_rm_temp.md](feedback_rm_temp.md) — Nunca borrar ficheros de temp/: dejarlos, el usuario los borra manualmente. rm y mv quedan bloqueados.
 - [feedback_temp_nombre_unico.md](feedback_temp_nombre_unico.md) — Si el fichero temp destino ya existe, NO leerlo: crear uno con nombre distinto (sufijo issue/PR, -v2…) para no gastar tokens en contenido irrelevante
@@ -52,6 +53,7 @@ Arranque servidor:
   - Usuario (manual, `!` en el prompt): `cd /d/BDDAT && source venv/Scripts/activate && python run.py`
   - Claude (Bash tool — sin source activate): `cd /d/BDDAT && venv/Scripts/python.exe run.py`
 Credenciales Playwright: usuario `CLG`, contraseña `31416` — login de DOS pasos (multi-rol): ver [project_login_dos_pasos.md](project_login_dos_pasos.md)
+- [feedback_puertos_zombis_windows_run_py.md](feedback_puertos_zombis_windows_run_py.md) — Windows permite varios `run.py` a la vez en el mismo puerto sin error; si un 500/404 persiste tras "reiniciar", comprobar procesos acumulados (PowerShell) antes de sospechar del código
 
 ## Rama de trabajo
 Siempre trabajar en `develop`. PRs siempre contra `develop`, no contra `main`.
@@ -72,11 +74,14 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 - [project_libreoffice_headless.md](project_libreoffice_headless.md) — Invocar LibreOffice headless: `soffice.com` (el `.exe` se cuelga), perfil aparte, filtros de conversión; el render a PNG miente con los acentos
 
 ## Verificación en navegador
-- [feedback_navegador_integrado_por_defecto.md](feedback_navegador_integrado_por_defecto.md) — mcp__Claude_Browser__* por defecto, sin preguntar; Playwright MCP para otros usos
-- [project_verif_arbol_react.md](project_verif_arbol_react.md) — Verificar en navegador integrado Claude Code Desktop (mcp__Claude_Browser__*), no Playwright MCP (reservado para otros usos)
+- [feedback_navegador_integrado_por_defecto.md](feedback_navegador_integrado_por_defecto.md) — SUPERSEDIDO 2026-08-04: Playwright MCP es ahora el default, sin preguntar (antes era el navegador integrado)
+- [project_verif_arbol_react.md](project_verif_arbol_react.md) — Verificar árbol React con Playwright MCP (default desde 2026-08-04)
+- [feedback_falso_positivo_navegador_integrado.md](feedback_falso_positivo_navegador_integrado.md) — Histórico (navegador integrado, ya no default): islas con panel/drawer dinámico podían dar coordenadas falsas
+- [feedback_browser_pane_no_mostrado.md](feedback_browser_pane_no_mostrado.md) — Histórico (navegador integrado, ya no default): screenshot/coordinate fallaban si el panel no estaba visible en pantalla
 
 ## Arquitectura — árbol del expediente
 - [project_arbol_crud_api.md](project_arbol_crud_api.md) — El CRUD del árbol vive en `api_expedientes.py` (/nodo/...), NO en `api_bc.py` (muerto desde #519); verificar el consumidor real antes de refactorizar permisos/comportamiento del árbol
+- [feedback_umbral_factorizar_excepciones_bespoke.md](feedback_umbral_factorizar_excepciones_bespoke.md) — Factorizar una excepción de editor bespoke de tarea cuando comparte raíz con otra ya existente (no solo por recuento de apariciones); ver ocultarDespensa/#742 como ejemplo de caso único que aún no toca generalizar
 
 ## Catálogo de documentos
 - [project_catalogo_documentos_alcance.md](project_catalogo_documentos_alcance.md) — Alcance del catálogo: cubre flujo ESFTT, excluye documentación presentada; patrón DR_NO_DUP para tipos del motor

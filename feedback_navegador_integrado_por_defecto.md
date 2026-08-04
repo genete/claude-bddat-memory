@@ -1,26 +1,34 @@
 ---
 name: feedback_navegador_integrado_por_defecto
-description: Usar el navegador integrado de Claude Code Desktop (mcp__Claude_Browser__*) por defecto para verificación en navegador; Playwright MCP queda para otros usos
+description: "SUPERSEDIDO 2026-08-04: Playwright MCP es ahora la herramienta por defecto de verificación en navegador, no el navegador integrado de Claude Code Desktop"
 metadata: 
   node_type: memory
   type: feedback
   originSessionId: 20a08a7d-89b5-450c-b2f7-81761354099d
-  modified: 2026-07-23T06:29:41.519Z
+  modified: 2026-08-04T11:57:33.105Z
 ---
 
-Para verificar cambios en navegador (dev server BDDAT, islas React, flujos e2e), usar por
-defecto el **navegador integrado de Claude Code Desktop** (tools `mcp__Claude_Browser__*`:
-`preview_start`, `computer`, `read_page`, `get_page_text`, `javascript_tool`,
-`read_network_requests`...). No requiere pedir permiso cada vez.
+**Revertido 2026-08-04 (commit `1bda33a`, sesión #630/PR #756).** Carlos cambió `CLAUDE.md`
+§"Verificación de cambios en navegador": ahora **Playwright MCP** es la herramienta por
+defecto, sin preguntar — justo lo contrario de lo que decía esta memoria desde la sesión
+#701 (2026-07-23).
 
-**Por qué:** Carlos indicó (sesión #701, 2026-07-23) que esta herramienta está "mucho más
-optimizada" para esta tarea que Playwright MCP, y que Playwright MCP "queda para otros usos".
-Antes de esta indicación, la única guía en `CLAUDE.md` mencionaba Playwright MCP como
-herramienta de testing en navegador con precaución de "preguntar siempre" — eso generaba duda
-sobre qué herramienta usar. Se corrigió `CLAUDE.md` §"Verificación de cambios en navegador"
-en la misma sesión para dejarlo explícito.
+**Por qué el cambio:** validado en vivo contra el árbol AT-2004 (react-flow). Playwright
+resuelve el "Browser pane is not displayed" del navegador integrado (gap de producto
+confirmado, sin ajuste disponible — ver `anthropics/claude-code#51587`,
+[[feedback_browser_pane_no_mostrado]]) y expone nodos custom sin rol ARIA vía accessibility
+snapshot + selectores estables (`data-testid`), sin depender de coordenadas de pantalla.
+`browser_resize` verificado en ambos sentidos — viewport real, independiente de la ventana
+física. Con tanto trabajo en islas React, probar primero el navegador integrado para acabar
+recurriendo a Playwright duplicaba login/navegación sin necesidad.
 
-**Cómo aplicar:** ante cualquier tarea de verificación en navegador, ir directo a
-`mcp__Claude_Browser__*` sin preguntar. Solo considerar Playwright MCP si el navegador
-integrado falla en un caso concreto (y en ese caso, preguntar antes de usarlo, ver
-[[project_verif_arbol_react]] para el historial de por qué esa precaución existía).
+**Cómo aplicar ahora:** ante cualquier tarea de verificación en navegador, ir directo a
+`mcp__playwright__*` (tools deferred — cargar con ToolSearch) sin preguntar. Login de dos
+pasos: [[project_login_dos_pasos]]. Capturas: sin nombre → auto-genera en `.playwright-mcp/`;
+con nombre propio, **siempre** prefijar `.playwright-mcp/nombre.png`. Cerrar el navegador con
+`browser_close` al terminar.
+
+El navegador integrado (`mcp__Claude_Browser__*`) queda sin mención en `CLAUDE.md` tras este
+cambio — si se necesita para algo puntual, tratarlo como excepción a confirmar con Carlos, no
+como alternativa por defecto (inversión del criterio anterior). Ver [[project_verif_arbol_react]]
+para el detalle de qué fallaba exactamente con el navegador integrado.
