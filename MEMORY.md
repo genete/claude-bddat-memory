@@ -44,6 +44,8 @@
 - [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Verificar con git log/show y datos de BD; pero la BD de desarrollo ilustra, no prueba (ficticia, desechable, con residuos previos a las salvaguardas). No revertir datos tras pruebas de UI
 - [feedback_enganche_temprano_vs_tardio.md](feedback_enganche_temprano_vs_tardio.md) — Ante dos puntos de enganche candidatos, preferir el más temprano si el dato disparador ya se fija ahí (caso #657: clasificación en subida, no asociación a tarea)
 - [feedback_estilos_odt_hijo_no_mutar.md](feedback_estilos_odt_hijo_no_mutar.md) — Variante de estilo ODT (p.ej. mayúsculas) va como estilo HIJO que solo añade la propiedad, nunca mutando el compartido; confirmar en qué plantilla vive el texto antes de tocar (#728: membrete vs título de resolución)
+- [feedback_matar_proceso_flask_al_cerrar_navegador.md](feedback_matar_proceso_flask_al_cerrar_navegador.md) — Al terminar verificación en navegador, matar también el proceso run.py arrancado en background, no solo browser_close
+- [feedback_ruta_posix_arranque_run_py_allowlist.md](feedback_ruta_posix_arranque_run_py_allowlist.md) — Arrancar run.py con ruta POSIX (/d/BDDAT/...), nunca D:/BDDAT/..., para que coincida con la allowlist y no pida confirmación
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
