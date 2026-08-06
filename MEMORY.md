@@ -6,6 +6,7 @@
 ## Feedback de trabajo
 - [feedback_invariante_vs_regla_motor.md](feedback_invariante_vs_regla_motor.md) — Antes de implementar una salvaguarda: ¿invariante (hardcode), modelo legal (reglas_motor) o dato de catálogo? Decirlo en la propuesta; por defecto permitir con justificación, no bloquear
 - [feedback_alembic_heads.md](feedback_alembic_heads.md) — Verificar `flask db current` antes de crear migración; si hay múltiples heads, fusionar primero
+- [feedback_migracion_manual_no_autogenerado.md](feedback_migracion_manual_no_autogenerado.md) — Migraciones se escriben a mano desde el principio (`op.create_table` calcado al estilo del repo), nunca `flask db migrate` autogenerado + revisión
 - [feedback_no_reintentar_latencia.md](feedback_no_reintentar_latencia.md) — Si un tool_result tarda, esperar; NO reemitir el mismo comando en bucle (encola ejecuciones reales)
 - [feedback_skill_boe.md](feedback_skill_boe.md) — Usar siempre el skill /boe para leer legislación; no WebFetch por libre
 - [feedback_skill_legalize.md](feedback_skill_legalize.md) — /legalize solo por orden directa del usuario; /boe y /boja no lo llaman internamente
@@ -42,6 +43,7 @@
 - [feedback_contexto_actual_solo_tras_merge.md](feedback_contexto_actual_solo_tras_merge.md) — CONTEXTO_ACTUAL.md "Hecho" se actualiza solo tras mergear el PR, sin encolar histórico; y registra solo lo que NO está en ADRs, MDs ni issues
 - [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Verificar con git log/show y datos de BD; pero la BD de desarrollo ilustra, no prueba (ficticia, desechable, con residuos previos a las salvaguardas). No revertir datos tras pruebas de UI
 - [feedback_enganche_temprano_vs_tardio.md](feedback_enganche_temprano_vs_tardio.md) — Ante dos puntos de enganche candidatos, preferir el más temprano si el dato disparador ya se fija ahí (caso #657: clasificación en subida, no asociación a tarea)
+- [feedback_estilos_odt_hijo_no_mutar.md](feedback_estilos_odt_hijo_no_mutar.md) — Variante de estilo ODT (p.ej. mayúsculas) va como estilo HIJO que solo añade la propiedad, nunca mutando el compartido; confirmar en qué plantilla vive el texto antes de tocar (#728: membrete vs título de resolución)
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
