@@ -5,13 +5,18 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 594dda76-6b48-40b7-828d-dc55d0361f8a
-  modified: 2026-08-06T07:29:23.581Z
+  modified: 2026-08-07T07:06:52.035Z
 ---
 
 Cerrar el navegador (`browser_close`) al terminar una verificación NO es suficiente cuando la
 verificación arrancó `run.py` con la tool Bash en background (`run_in_background: true`) para
-tener un servidor local sobre el que probar. Hay que matar también ese proceso — con
-`KillShell`/`TaskStop` sobre el `task-id`, o `taskkill` sobre el PID — antes de cerrar el hilo.
+tener un servidor local sobre el que probar. Hay que matar también ese proceso.
+
+**La forma correcta es `TaskStop` sobre el `task_id`** que devolvió la propia llamada Bash
+(p. ej. `bgw2vi4k4`) — no pide permiso, es la rutina normal del ciclo
+servidor→pruebas→`browser_close`→parar servidor. **No usar `taskkill` ni
+`Stop-Process`/PowerShell**: no están en la allowlist, disparan una petición de permiso
+innecesaria y Carlos ya ha señalado esto como superado (2026-08-07, #684).
 
 **Por qué:** dejar el proceso vivo es exactamente la causa raíz de
 [[feedback_puertos_zombis_windows_run_py]] — Windows permite varios `python run.py`
@@ -23,7 +28,8 @@ proceso anterior — síntoma consistente con la acumulación descrita en esa me
 **Cómo aplicar:** al terminar cualquier verificación en navegador (Playwright MCP, según
 CLAUDE.md) que dependió de un `run.py` propio arrancado por Claude en esta sesión:
 1. `browser_close` (regla ya existente en CLAUDE.md del proyecto).
-2. Matar el proceso Flask de verificación — no dejarlo "por si acaso" para la próxima vez.
+2. `TaskStop` con el `task_id` del arranque — no dejarlo "por si acaso" para la próxima vez,
+   y sin recurrir a comandos de sistema que pidan permiso.
 
 No aplica al servidor que el propio Carlos arranca manualmente (`!` en el prompt) — ese lo
 gestiona él.

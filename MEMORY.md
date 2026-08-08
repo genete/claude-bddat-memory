@@ -24,6 +24,7 @@
 - [feedback_issues_en_memory.md](feedback_issues_en_memory.md) — No guardar en memoria estado de issues ni ramas activas; eso es de GitHub y git
 - [feedback_commit_format.md](feedback_commit_format.md) — Formato de commits: `[CATEGORÍA] #N descripción`, NO conventional commits (feat:/fix:/docs:)
 - [feedback_conformidad_implicita.md](feedback_conformidad_implicita.md) — No asumir conformidad implícita a sugerencias de diseño de Claude; esperar confirmación explícita antes de escribir en fuentes de verdad
+- [feedback_sin_preferencia_no_es_indiferencia.md](feedback_sin_preferencia_no_es_indiferencia.md) — Varios "[No preference]" seguidos pueden señalar que las opciones parten de un encuadre que Carlos no comparte, no vía libre
 - [feedback_analisis_impacto.md](feedback_analisis_impacto.md) — Ante refactorizaciones: presentar tabla de consumidores en TODO el sistema antes de escribir código
 - [feedback_una_conversacion_por_issue.md](feedback_una_conversacion_por_issue.md) — Una sesión = un issue; no continuar con el siguiente en la misma conversación
 - [feedback_fuentes_verdad.md](feedback_fuentes_verdad.md) — No tratar derivados como consumidores independientes; si el JSON ya es correcto, los derivados solo necesitan /sync-derivados
@@ -44,8 +45,9 @@
 - [feedback_verificar_con_datos_reales_e_historial.md](feedback_verificar_con_datos_reales_e_historial.md) — Verificar con git log/show y datos de BD; pero la BD de desarrollo ilustra, no prueba (ficticia, desechable, con residuos previos a las salvaguardas). No revertir datos tras pruebas de UI
 - [feedback_enganche_temprano_vs_tardio.md](feedback_enganche_temprano_vs_tardio.md) — Ante dos puntos de enganche candidatos, preferir el más temprano si el dato disparador ya se fija ahí (caso #657: clasificación en subida, no asociación a tarea)
 - [feedback_estilos_odt_hijo_no_mutar.md](feedback_estilos_odt_hijo_no_mutar.md) — Variante de estilo ODT (p.ej. mayúsculas) va como estilo HIJO que solo añade la propiedad, nunca mutando el compartido; confirmar en qué plantilla vive el texto antes de tocar (#728: membrete vs título de resolución)
-- [feedback_matar_proceso_flask_al_cerrar_navegador.md](feedback_matar_proceso_flask_al_cerrar_navegador.md) — Al terminar verificación en navegador, matar también el proceso run.py arrancado en background, no solo browser_close
+- [feedback_matar_proceso_flask_al_cerrar_navegador.md](feedback_matar_proceso_flask_al_cerrar_navegador.md) — Al terminar verificación en navegador, parar el run.py de background con **TaskStop sobre el task_id** (no taskkill/PowerShell: piden permiso), no solo browser_close
 - [feedback_ruta_posix_arranque_run_py_allowlist.md](feedback_ruta_posix_arranque_run_py_allowlist.md) — Arrancar run.py con ruta POSIX (/d/BDDAT/...), nunca D:/BDDAT/..., para que coincida con la allowlist y no pida confirmación
+- [feedback_comandos_allowlist_verbatim.md](feedback_comandos_allowlist_verbatim.md) — Comandos rutinarios de la allowlist, VERBATIM: `npm --prefix /d/BDDAT/react-src run build` sin `| tail` ni `2>&1`, o rompe el match y pide permiso
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
