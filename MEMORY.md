@@ -9,10 +9,12 @@
 - [feedback_migracion_manual_no_autogenerado.md](feedback_migracion_manual_no_autogenerado.md) — Migraciones se escriben a mano desde el principio (`op.create_table` calcado al estilo del repo), nunca `flask db migrate` autogenerado + revisión
 - [feedback_no_reintentar_latencia.md](feedback_no_reintentar_latencia.md) — Si un tool_result tarda, esperar; NO reemitir el mismo comando en bucle (encola ejecuciones reales)
 - [feedback_skill_boe.md](feedback_skill_boe.md) — Usar siempre el skill /boe para leer legislación; no WebFetch por libre
+- [feedback_partir_de_la_norma_no_de_la_implementacion.md](feedback_partir_de_la_norma_no_de_la_implementacion.md) — En cuestiones jurídicas leer la norma ANTES de proponer diseño; el código y los DISEÑO_*.md derivan de lecturas previas y arrastran premisas falsas (caso #788: «las fases tienen plazo»)
 - [feedback_skill_legalize.md](feedback_skill_legalize.md) — /legalize solo por orden directa del usuario; /boe y /boja no lo llaman internamente
 - [feedback_expansion_documentos.md](feedback_expansion_documentos.md) — Al escribir en docs de diseño, Claude expande con inferencias propias que no siempre están alineadas; requiere revisión
 - [feedback_git_stash.md](feedback_git_stash.md) — No usar `git checkout --` para descartar cambios no relacionados del usuario
 - [feedback_relectura_contexto.md](feedback_relectura_contexto.md) — No releer ficheros que ya están en contexto de la sesión actual
+- [feedback_urgencia_desarrollo_vs_produccion.md](feedback_urgencia_desarrollo_vs_produccion.md) — BDDAT está en desarrollo, no en producción; no dar a los bugs urgencia de incidente salvo que Carlos lo pida
 - [feedback_commits_atomicos_verificados.md](feedback_commits_atomicos_verificados.md) — En refactors grandes, commits atómicos verificados uno a uno, no un commit monolítico
 - [feedback_antibloqueos_bash.md](feedback_antibloqueos_bash.md) — RESUELTO por hook `.claude/hooks/reglas_bash_guard.py`: deniega los anti-patrones. Si deniega, reescribir con el arreglo indicado; qué queda fuera de su cobertura
 - [feedback_bash_vs_herramientas_dedicadas.md](feedback_bash_vs_herramientas_dedicadas.md) — No usar Bash para ls/find/grep/cat cuando Glob/Grep/Read cubren el caso, ni para consultas triviales; aprobar el permiso consolidaría el patrón en settings
@@ -36,7 +38,9 @@
 - [feedback_consolidar_antes_de_nuevo.md](feedback_consolidar_antes_de_nuevo.md) — Orden de roadmap: consolidar infra + migrar lo existente antes de construir vistas nuevas aisladas; distinguir lo preceptivo de lo importante
 - [feedback_verificar_atribucion_codigo.md](feedback_verificar_atribucion_codigo.md) — Al mapear código→catálogo por grep, confirmar la clase real tras un `.codigo` (puede ser un dataclass interno, no un modelo) antes de darlo por bueno
 - [feedback_emplazamiento_navegacion.md](feedback_emplazamiento_navegacion.md) — Al dar de alta una pantalla admin nueva, el patrón de UI a copiar y su emplazamiento de navegación son decisiones distintas; aplicar el test de ADR-029, no copiar el módulo hermano más parecido
-- [feedback_worktree_venv_env.md](feedback_worktree_venv_env.md) — Worktree nuevo: venv propio sin pytest + falta .env (gitignored); smoke tests corren contra BD real, limpiar filas de alta con fixture autouse
+- [feedback_worktree_venv_env.md](feedback_worktree_venv_env.md) — Worktree nuevo: venv propio sin pytest + falta .env + isla React sin bundle/node_modules (gitignored); smoke tests corren contra BD real, limpiar filas de alta con fixture autouse
+- [feedback_no_worktrees_bddat.md](feedback_no_worktrees_bddat.md) — Carlos probó worktrees en #776 y decidió no usarlos en BDDAT; no ofrecerlos proactivamente de nuevo
+- [feedback_worktree_settings_local_no_sync.md](feedback_worktree_settings_local_no_sync.md) — settings.local.json no sincroniza entre worktree y principal (Windows, confirmado); pero preguntas repetidas normalmente son por comandos exactos sin wildcard, no por venv en otra ruta
 - [feedback_no_inventar_aislamiento_sin_ruta_herencia.md](feedback_no_inventar_aislamiento_sin_ruta_herencia.md) — No proponer aislamiento entre datos ficticios/reales sin verificar antes si existe ruta de herencia dev→prod
 - [feedback_mapear_todo_aunque_implementacion_parcial.md](feedback_mapear_todo_aunque_implementacion_parcial.md) — Al planificar cobertura de cara a un hito, mapear todos los mecanismos aunque la implementación de algunos quede en placeholder
 - [feedback_verificar_rama_antes_de_commit.md](feedback_verificar_rama_antes_de_commit.md) — Verificar rama git actual antes de commitear en sesiones largas; el snapshot inicial de gitStatus puede haber quedado obsoleto
@@ -47,6 +51,7 @@
 - [feedback_estilos_odt_hijo_no_mutar.md](feedback_estilos_odt_hijo_no_mutar.md) — Variante de estilo ODT (p.ej. mayúsculas) va como estilo HIJO que solo añade la propiedad, nunca mutando el compartido; confirmar en qué plantilla vive el texto antes de tocar (#728: membrete vs título de resolución)
 - [feedback_matar_proceso_flask_al_cerrar_navegador.md](feedback_matar_proceso_flask_al_cerrar_navegador.md) — Al terminar verificación en navegador, parar el run.py de background con **TaskStop sobre el task_id** (no taskkill/PowerShell: piden permiso), no solo browser_close
 - [feedback_ruta_posix_arranque_run_py_allowlist.md](feedback_ruta_posix_arranque_run_py_allowlist.md) — Arrancar run.py con ruta POSIX (/d/BDDAT/...), nunca D:/BDDAT/..., para que coincida con la allowlist y no pida confirmación
+- [feedback_atajos_interfaz_servicio.md](feedback_atajos_interfaz_servicio.md) — No añadir entradas «de conveniencia» a la interfaz de un servicio para niveles que el modelo dice que no tienen esa propiedad; si el consumidor llega por el nivel equivocado, la bajada es navegación suya
 - [feedback_comandos_allowlist_verbatim.md](feedback_comandos_allowlist_verbatim.md) — Comandos rutinarios de la allowlist, VERBATIM: `npm --prefix /d/BDDAT/react-src run build` sin `| tail` ni `2>&1`, o rompe el match y pide permiso
 
 ## Sobre Carlos
@@ -104,6 +109,9 @@ Claude no debe hacer commits ni gestionar git en estas rutas.
 ## Arquitectura — motor y bloqueos entre fases
 - [project_bloqueos_naturales_vs_motor.md](project_bloqueos_naturales_vs_motor.md) — Bloqueo de motor (tasa, universal) vs imposibilidad natural por falta de documento (separata→Consultas, EIA→AAU integrada); esto último no lleva issue propio
 - [project_capas_catalogo_motor.md](project_capas_catalogo_motor.md) — 3 capas independientes en tipos_fases/tramites/tareas: vocabulario (libre), reglas_motor (dato, futuro #170/#171), casos especiales (código); generalizar Variable Registry evaluado y descartado
+
+## Arquitectura — plazos y suspensiones (art. 22 LPACAP)
+- [project_aau_integrada_sin_causa_suspension.md](project_aau_integrada_sin_causa_suspension.md) — El bloque ambiental AAU_AAUS_INTEGRADA no suspende; desde #778 eso es una fila que falta en catalogo_plazos, no una lista que ampliar en el código
 
 ## Arquitectura — decisiones pendientes
 - [project_plantilla_tarea_elaborar.md](project_plantilla_tarea_elaborar.md) — Asociación plantilla↔tarea-ELABORAR no implementada; evaluar tras probar CBs #392-#394 con plantilla dummy
