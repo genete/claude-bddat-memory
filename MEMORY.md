@@ -53,6 +53,7 @@
 - [feedback_ruta_posix_arranque_run_py_allowlist.md](feedback_ruta_posix_arranque_run_py_allowlist.md) — Arrancar run.py con ruta POSIX (/d/BDDAT/...), nunca D:/BDDAT/..., para que coincida con la allowlist y no pida confirmación
 - [feedback_atajos_interfaz_servicio.md](feedback_atajos_interfaz_servicio.md) — No añadir entradas «de conveniencia» a la interfaz de un servicio para niveles que el modelo dice que no tienen esa propiedad; si el consumidor llega por el nivel equivocado, la bajada es navegación suya
 - [feedback_comandos_allowlist_verbatim.md](feedback_comandos_allowlist_verbatim.md) — Comandos rutinarios de la allowlist, VERBATIM: `npm --prefix /d/BDDAT/react-src run build` sin `| tail` ni `2>&1`, o rompe el match y pide permiso
+- [feedback_traspaso_significa_parar.md](feedback_traspaso_significa_parar.md) — "Traspaso y finalizamos" es orden de parar; el mensaje automático de reanudación tras límite de uso no es de Carlos y no reactiva por sí solo el trabajo pendiente
 
 ## Sobre Carlos
 - [user_prioridad_codigo_sobre_poblado.md](user_prioridad_codigo_sobre_poblado.md) — Prioriza issues que generan código; evita poblados puros de catálogo mientras pueda
@@ -65,6 +66,7 @@ Arranque servidor:
   - Claude (Bash tool — sin source activate): `cd /d/BDDAT && venv/Scripts/python.exe run.py`
 Credenciales Playwright: usuario `CLG`, contraseña `31416` — login de DOS pasos (multi-rol): ver [project_login_dos_pasos.md](project_login_dos_pasos.md)
 - [feedback_puertos_zombis_windows_run_py.md](feedback_puertos_zombis_windows_run_py.md) — Windows permite varios `run.py` a la vez en el mismo puerto sin error; si un 500/404 persiste tras "reiniciar", comprobar procesos acumulados (PowerShell) antes de sospechar del código
+- [project_reloj_dev_script.md](project_reloj_dev_script.md) — `scripts/reloj_dev.py` cambia la fecha simulada (#820) sin arrancar Flask; vocabulario de Carlos ("aumenta N días hábiles"...) → subcomando exacto
 
 ## Rama de trabajo
 Siempre trabajar en `develop`. PRs siempre contra `develop`, no contra `main`.
