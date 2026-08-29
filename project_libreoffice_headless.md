@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 531a852e-572d-4ed1-8e56-36bd0a5c26a4
-  modified: 2026-07-30T11:50:13.157Z
+  modified: 2026-08-29T07:45:14.481Z
 ---
 
 LibreOffice 7.6.7.2 instalado en `C:\Program Files\LibreOffice\program\`. Es
@@ -44,4 +44,4 @@ compuestos con glifos combinantes (se ve "Coñsejería" donde el PDF pone
 apariencia, abrir el PDF en el navegador integrado (`preview_start` con
 `file:///…`), que usa pdfium.
 
-Ver [[project_verif_arbol_react]] para la verificación en navegador.
+Ver [[project_verif_arbol_react]] para la verificación en navegador (Playwright MCP).

@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: db4fa4f1-9ef7-430b-951d-b98ab064b061
-  modified: 2026-08-18T08:25:19.814Z
+  modified: 2026-08-29T07:45:13.258Z
 ---
 
 Ante una pregunta de fondo jurídico (¿de quién es este plazo? ¿qué lo suspende?
@@ -30,5 +30,5 @@ contradicen el texto legal, se corrigen ellos. Y si el usuario corrige una premi
 revisar si esa misma premisa contamina otras partes del análisis en curso — en
 #788, caer FASE implicaba caer TRÁMITE, y no lo vi hasta que me lo señalaron.
 
-Relacionado: [[feedback_skill_boe]], [[feedback_verificar_con_datos_reales_e_historial]],
+Relacionado: [[feedback_skills_legislacion]], [[feedback_verificar_con_datos_reales_e_historial]],
 [[feedback_vigencia_modificaciones_normativas]]

@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 0955e6b1-b6c0-45e8-a984-842da83915ef
-  modified: 2026-08-07T08:16:29.044Z
+  modified: 2026-08-29T07:49:46.686Z
 ---
 
 Cuando Carlos contesta `[No preference]` a **varias** preguntas de diseño en la misma
@@ -28,5 +28,5 @@ partía de una premisa que él no comparte. Sin preferencia era la respuesta cor
 antes de tirar con las recomendaciones conviene una frase del tipo "¿o el encuadre es
 otro?". Y si después llega una visión propia, rehacer el análisis contra ella y decir
 explícitamente qué propuestas anteriores caen — no intentar encajar la visión nueva
-dentro del andamiaje viejo. Ver también [[feedback-conformidad-implicita]] y
-[[feedback-proactividad-tecnica]].
+dentro del andamiaje viejo. Ver también [[feedback_conformidad_implicita]] y
+[[feedback_proactividad_tecnica]].

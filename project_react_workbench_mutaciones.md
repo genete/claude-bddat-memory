@@ -5,6 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6c02de24-e00d-43cf-82de-c32cd0393c5e
+  modified: 2026-08-29T07:49:45.322Z
 ---
 
 Decidido en sesión de diseño (2026-06-01, contexto #500 S3b) con Carlos:
@@ -32,4 +33,4 @@ Decidido en sesión de diseño (2026-06-01, contexto #500 S3b) con Carlos:
   workbench), será un **ADR aparte post-#500**. La duplicación de componentes solo muerde en widgets
   con comportamiento JS imperativo; los controles planos comparten clases Bootstrap (sin duplicar).
 
-Relacionado: [[project_estado_mayo2026]], [[project_backend_solido_revamping]].
+Relacionado: [[project_backend_solido_revamping]].

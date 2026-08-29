@@ -5,6 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 994c1951-3488-4b80-82ec-a5d55264839a
+  modified: 2026-08-29T07:45:07.795Z
 ---
 
 `docs/decisiones/ADR-032-ingesta-almacenamiento-fisico-documentos.md` (adoptada
@@ -33,5 +34,4 @@ escritos, no del pool), 27 relativas de `scripts/seed_demo.py` (dataset ficticio
 conectado al código real). Ver [[feedback_verificar_con_datos_reales_e_historial]].
 
 Issues del bloque: #664 (rutas relativas) → #665 (pool + convención carpetas) →
-{#666 (multipart), #667 (mover al vincular)}. Ver también
-[[project_organizacion_documental_pendiente]].
+{#666 (multipart), #667 (mover al vincular)}.

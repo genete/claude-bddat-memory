@@ -1,62 +1,48 @@
 ---
 name: project_verif_arbol_react
-description: "Cómo verificar la vista de árbol React (expediente-arbol/react-flow) en navegador; desde 2026-08-04 con Playwright MCP (herramienta por defecto), no el navegador integrado de Claude Code Desktop"
+description: "Cómo verificar la isla React del árbol de expediente (react-flow) en navegador con Playwright MCP; troubleshooting heredado del navegador integrado (ya no default, CLAUDE.md lo fija)"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 0b057c39-2c1e-4162-9252-46aa9b4caade
-  modified: 2026-08-04T11:57:44.427Z
+  modified: 2026-08-29T07:45:02.312Z
 ---
 
-**Actualizado 2026-08-04 (commit `1bda33a`, sesión #630/PR #756):** el criterio se invierte
-otra vez — **Playwright MCP** pasa a ser la herramienta por defecto de verificación en
-navegador, sin preguntar (ver [[feedback_navegador_integrado_por_defecto]] para el detalle
-completo del cambio y por qué). El navegador integrado deja de ser el default.
+`CLAUDE.md` ya fija Playwright MCP como herramienta por defecto de verificación en navegador
+(sin preguntar) — no repetir esa regla aquí. Esta memoria guarda el detalle operativo de la
+isla **expediente-arbol** (react-flow) y el troubleshooting que llevó a esa decisión.
 
-**Histórico 2026-07-23 (sesión #701, ya no vigente):** Carlos indicó que el navegador
-integrado de Claude Code Desktop (tools `mcp__Claude_Browser__*`: `preview_start`,
-`computer`, `read_page`, `javascript_tool`, `read_network_requests`...) era la herramienta
-por defecto para este tipo de verificación, más optimizada que Playwright MCP — que
-quedaba reservado para otros usos.
+**Datos de la isla:** login de dos pasos por fetch, ver [[project_login_dos_pasos]]. Expediente
+de prueba usado en las sesiones de referencia: AT-2004 (id=4), rol SUPERVISOR (id=2). Ruta:
+`/expedientes/<id>/arbol`. **El código AT-NNNN mostrado en UI no coincide con el `id` interno**
+de la tabla `expedientes` — confirmar el id real antes de navegar (AT-2004 es id=4).
 
-En la verificación de #701 sobre la isla **expediente-arbol** (react-flow, expediente
-AT-2004/id=4) con `mcp__Claude_Browser__computer{action:"screenshot"}` **no hubo cuelgue**:
-capturas, `read_page`, `javascript_tool` y clicks funcionaron con normalidad sobre el nodo
-ANALIZAR del trámite Requerimiento de Subsanación y su modal de requerimientos. La nota
-histórica de abajo (Playwright, `preview_screenshot` colgado) viene de una sesión anterior
-con **otra** herramienta de preview (no el navegador integrado actual) — mantenida por si
-el problema reaparece con el navegador integrado en alguna isla concreta, pero ya no aplica
-como regla general.
+Capturas con Playwright: sin nombre → auto-genera en `.playwright-mcp/`; con nombre propio,
+**siempre** prefijar `.playwright-mcp/nombre.png`. Cerrar con `browser_close` al terminar.
 
-Login de dos pasos por fetch: ver [[project_login_dos_pasos]]. Expediente de prueba usado
-en #701: AT-2004 (id=4), rol SUPERVISOR (id=2). Ruta de árbol: `/expedientes/<id>/arbol`
-(nota: el código AT-NNNN mostrado en UI no coincide con el `id` interno de la tabla
-`expedientes` — confirmar el id real antes de navegar, p. ej. AT-2004 es id=4).
+## Por qué se abandonó el navegador integrado (`mcp__Claude_Browser__*`) como default
 
----
+Cambio decidido 2026-08-04 (commit `1bda33a`, sesión #630/PR #756) tras dos fallos reales:
 
-**Actualizado 2026-08-04 (sesión #742):** `screenshot`/clicks por `coordinate` fallaron con
-«Browser pane is not displayed» (no es el cuelgue de rAF de la nota histórica de abajo —
-mensaje distinto, causa distinta). Confirmado que NO es un problema de esta isla en
-concreto (la misma vista funcionó en #701). Detalle y cómo aplicar en
-[[feedback_browser_pane_no_mostrado]].
+- **"Browser pane is not displayed"**: `screenshot`/clicks por `coordinate` fallan cuando el
+  panel del navegador integrado no está visualmente mostrado en la interfaz de Claude Code
+  Desktop — es un estado de la sesión/cliente (gap de producto confirmado, sin ajuste
+  disponible, ver `anthropics/claude-code#51587`), no un límite de la isla React probada. No
+  hay tool para forzar que el panel se muestre — depende de que el usuario lo tenga abierto.
+  Si aparece, no reintentar en bucle: usar `javascript_tool` (dispatchEvent sobre
+  `querySelector`) + `get_page_text`/DOM para confirmar wiring sin necesitar captura visual.
+- **Falsos positivos de posición en paneles dinámicos**: un botón del Inspector de
+  `tablas_maestras` se midió con `getBoundingClientRect().x ≈ 2065px` (fuera de un viewport de
+  1280px) en el navegador integrado, pero Carlos no lo reproducía en su navegador real. Ni
+  siquiera medir con JS directo (no solo con la tool de clic) descarta el artefacto — paneles
+  con `transform`/posicionamiento dinámico (drawers deslizantes) pueden renderizar mal ahí sin
+  que sea un bug real de la app. Contrastar con Carlos antes de dar un hallazgo así por
+  "confirmado" con una sola reproducción propia.
 
----
+Playwright resuelve ambos (accessibility snapshot + selectores estables como `data-testid` en
+vez de coordenadas de pantalla) y expone nodos custom sin rol ARIA (los `.arbol-tarea` de
+react-flow son `<div>` con handler React, no elementos accesibles — `read_page` no los
+etiqueta en el navegador integrado).
 
-## Nota histórica (sesión previa, herramienta de preview ya no vigente)
-
-Verificar la isla **expediente-arbol** (react-flow) en navegador tenía varias trampas de
-tooling con la herramienta de preview usada entonces:
-
-- **`preview_screenshot` se CUELGA (timeout 30s) en islas que mantienen rAF/observers vivos**:
-  confirmado en la vista de árbol (bucle `requestAnimationFrame` de react-flow) Y en la isla
-  **estadisticas** (Recharts `ResponsiveContainer`, que monitoriza tamaño en bucle; ni siquiera
-  `isAnimationActive={false}` lo evita). El renderer estaba vivo (`preview_snapshot` y
-  `preview_eval` funcionaban siempre y bastaban para verificar estructura + valores).
-- **El navegador de preview (`preview_start` "bddat", 5000) era HEADLESS**: el `Screenshot` de
-  windows-mcp capturaba el escritorio real del usuario, no la preview.
-- **CSSTransition se quedaba `pending` en `currentTime:0` en aquel preview headless**: medir
-  `opacity` de un atenuado con transición devolvía el frame inicial, no el final.
-- **`preview_click` (MCP) no siempre disparaba el `onClick` de React**; el click nativo sí.
-
-Ver [[feedback_antibloqueos_bash]] para el resto de anti-bloqueos generales.
+**Si alguna vez hace falta el navegador integrado para algo puntual**, tratarlo como excepción
+a confirmar con Carlos, no como alternativa por defecto.

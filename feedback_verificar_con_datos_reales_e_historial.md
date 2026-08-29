@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 7348668e-566e-4672-8d65-967da640fa0a
-  modified: 2026-07-29T06:16:10.792Z
+  modified: 2026-08-29T07:49:44.224Z
 ---
 
 Cuando Carlos cuestiona una afirmación sobre el comportamiento del código ("esto no me
@@ -51,7 +51,7 @@ restaurar estados previos, limpiar). Cuesta tokens y turnos, y para Carlos corre
 borrar esos datos es inmediato y gratuito. Dejarlos y decir qué se ha tocado.
 
 Nota: esto NO afecta a los **tests** — los smoke tests corren contra BD real y ahí sí hace
-falta fixture `autouse` que limpie (ver [[feedback_worktree_venv_env]]). La diferencia es
+falta fixture `autouse` que limpie (ver [[feedback_no_worktrees_bddat]]). La diferencia es
 que un test sucio rompe la siguiente ejecución; una fila de prueba en la UI, no.
 
-Relacionado: [[feedback_verificar_atribucion_codigo]], [[feedback_rm_temp]].
+Relacionado: [[feedback_verificar_atribucion_codigo]], [[feedback_ficheros_temp]].
